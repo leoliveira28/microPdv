@@ -14,11 +14,11 @@ export const AdicionarMesa = () => {
     console.log(result)
   };
   return (
-    <div>
+    <div className="flex gap-5">
       <input
         type="text"
         placeholder="Nome - Tel"
-        className="bg-slate-100 p-2"
+        className="bg-slate-200 p-2"
         onChange={(e) => setMesa(e.target.value)}
       />
       <button onClick={handleAdicionarMesa} className="p-2 bg-green-500 rounded-md text-slate-900">
