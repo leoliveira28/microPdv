@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 // import { PrismaClient } from "@prisma/client";
->>>>>>> ea167906ddab5ed2a2bb306c5713898336f4e984
 import { PrismaClient } from "../generated/client";
 let prisma;
 
