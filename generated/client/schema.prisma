@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Produto {
+  id            Int             @id @default(autoincrement())
+  nome          String
+  preco         Float
+  categoria     String
+  pedidos       Pedido[]
+}
+
+model Mesa {
+  id      Int      @id @default(autoincrement())
+  nome    String?
+  numero  Int
+  status  String
+  pedidos Pedido[]
+}
+
+model Pedido {
+  id                Int              @id @default(autoincrement())
+  mesaId            Int
+  comandaId         Int
+  produtoId         Int
+  quantidade        Int
+  pedidoEncerradoId Int?
+  mesa              Mesa             @relation(fields: [mesaId], references: [id])
+  pedidoEncerrado   PedidoEncerrado? @relation(fields: [pedidoEncerradoId], references: [id])
+  produto           Produto          @relation(fields: [produtoId], references: [id])
+}
+
+model PedidoEncerrado {
+  id             Int      @id @default(autoincrement())
+  mesaId         Int
+  valor          Float
+  formaPagamento String
+  data           DateTime
+  pedidos        Pedido[]
+}
+
+
