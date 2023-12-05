@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import Link from "next/link";
 import { PrismaClient } from "../../generated/client";
 import { AdicionarMesa } from "@/components/CriarMesa";
