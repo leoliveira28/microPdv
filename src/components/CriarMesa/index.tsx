@@ -14,7 +14,7 @@ export const AdicionarMesa = () => {
     console.log(result)
   };
   return (
-    <div className="flex gap-5">
+    <div className="flex flex-col gap-5 w-72">
       <input
         type="text"
         placeholder="Nome - Tel"

@@ -28,7 +28,7 @@ model Mesa {
 model Pedido {
   id                Int              @id @default(autoincrement())
   mesaId            Int
-  comandaId         Int
+  comandaId         Int?
   produtoId         Int
   quantidade        Int
   pedidoEncerradoId Int?

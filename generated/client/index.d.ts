@@ -3333,7 +3333,7 @@ export namespace Prisma {
   export type PedidoGroupByOutputType = {
     id: number
     mesaId: number
-    comandaId: number
+    comandaId: number | null
     produtoId: number
     quantidade: number
     pedidoEncerradoId: number | null
@@ -3396,7 +3396,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       mesaId: number
-      comandaId: number
+      comandaId: number | null
       produtoId: number
       quantidade: number
       pedidoEncerradoId: number | null
@@ -5386,7 +5386,7 @@ export namespace Prisma {
     NOT?: PedidoWhereInput | PedidoWhereInput[]
     id?: IntFilter<"Pedido"> | number
     mesaId?: IntFilter<"Pedido"> | number
-    comandaId?: IntFilter<"Pedido"> | number
+    comandaId?: IntNullableFilter<"Pedido"> | number | null
     produtoId?: IntFilter<"Pedido"> | number
     quantidade?: IntFilter<"Pedido"> | number
     pedidoEncerradoId?: IntNullableFilter<"Pedido"> | number | null
@@ -5398,7 +5398,7 @@ export namespace Prisma {
   export type PedidoOrderByWithRelationInput = {
     id?: SortOrder
     mesaId?: SortOrder
-    comandaId?: SortOrder
+    comandaId?: SortOrderInput | SortOrder
     produtoId?: SortOrder
     quantidade?: SortOrder
     pedidoEncerradoId?: SortOrderInput | SortOrder
@@ -5413,7 +5413,7 @@ export namespace Prisma {
     OR?: PedidoWhereInput[]
     NOT?: PedidoWhereInput | PedidoWhereInput[]
     mesaId?: IntFilter<"Pedido"> | number
-    comandaId?: IntFilter<"Pedido"> | number
+    comandaId?: IntNullableFilter<"Pedido"> | number | null
     produtoId?: IntFilter<"Pedido"> | number
     quantidade?: IntFilter<"Pedido"> | number
     pedidoEncerradoId?: IntNullableFilter<"Pedido"> | number | null
@@ -5425,7 +5425,7 @@ export namespace Prisma {
   export type PedidoOrderByWithAggregationInput = {
     id?: SortOrder
     mesaId?: SortOrder
-    comandaId?: SortOrder
+    comandaId?: SortOrderInput | SortOrder
     produtoId?: SortOrder
     quantidade?: SortOrder
     pedidoEncerradoId?: SortOrderInput | SortOrder
@@ -5442,7 +5442,7 @@ export namespace Prisma {
     NOT?: PedidoScalarWhereWithAggregatesInput | PedidoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Pedido"> | number
     mesaId?: IntWithAggregatesFilter<"Pedido"> | number
-    comandaId?: IntWithAggregatesFilter<"Pedido"> | number
+    comandaId?: IntNullableWithAggregatesFilter<"Pedido"> | number | null
     produtoId?: IntWithAggregatesFilter<"Pedido"> | number
     quantidade?: IntWithAggregatesFilter<"Pedido"> | number
     pedidoEncerradoId?: IntNullableWithAggregatesFilter<"Pedido"> | number | null
@@ -5606,7 +5606,7 @@ export namespace Prisma {
   }
 
   export type PedidoCreateInput = {
-    comandaId: number
+    comandaId?: number | null
     quantidade: number
     mesa: MesaCreateNestedOneWithoutPedidosInput
     pedidoEncerrado?: PedidoEncerradoCreateNestedOneWithoutPedidosInput
@@ -5616,14 +5616,14 @@ export namespace Prisma {
   export type PedidoUncheckedCreateInput = {
     id?: number
     mesaId: number
-    comandaId: number
+    comandaId?: number | null
     produtoId: number
     quantidade: number
     pedidoEncerradoId?: number | null
   }
 
   export type PedidoUpdateInput = {
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     quantidade?: IntFieldUpdateOperationsInput | number
     mesa?: MesaUpdateOneRequiredWithoutPedidosNestedInput
     pedidoEncerrado?: PedidoEncerradoUpdateOneWithoutPedidosNestedInput
@@ -5633,7 +5633,7 @@ export namespace Prisma {
   export type PedidoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     produtoId?: IntFieldUpdateOperationsInput | number
     quantidade?: IntFieldUpdateOperationsInput | number
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -5642,21 +5642,21 @@ export namespace Prisma {
   export type PedidoCreateManyInput = {
     id?: number
     mesaId: number
-    comandaId: number
+    comandaId?: number | null
     produtoId: number
     quantidade: number
     pedidoEncerradoId?: number | null
   }
 
   export type PedidoUpdateManyMutationInput = {
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     quantidade?: IntFieldUpdateOperationsInput | number
   }
 
   export type PedidoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     produtoId?: IntFieldUpdateOperationsInput | number
     quantidade?: IntFieldUpdateOperationsInput | number
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -6190,6 +6190,14 @@ export namespace Prisma {
     connect?: ProdutoWhereUniqueInput
   }
 
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type MesaUpdateOneRequiredWithoutPedidosNestedInput = {
     create?: XOR<MesaCreateWithoutPedidosInput, MesaUncheckedCreateWithoutPedidosInput>
     connectOrCreate?: MesaCreateOrConnectWithoutPedidosInput
@@ -6214,14 +6222,6 @@ export namespace Prisma {
     upsert?: ProdutoUpsertWithoutPedidosInput
     connect?: ProdutoWhereUniqueInput
     update?: XOR<XOR<ProdutoUpdateToOneWithWhereWithoutPedidosInput, ProdutoUpdateWithoutPedidosInput>, ProdutoUncheckedUpdateWithoutPedidosInput>
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type PedidoCreateNestedManyWithoutPedidoEncerradoInput = {
@@ -6450,7 +6450,7 @@ export namespace Prisma {
   }
 
   export type PedidoCreateWithoutProdutoInput = {
-    comandaId: number
+    comandaId?: number | null
     quantidade: number
     mesa: MesaCreateNestedOneWithoutPedidosInput
     pedidoEncerrado?: PedidoEncerradoCreateNestedOneWithoutPedidosInput
@@ -6459,7 +6459,7 @@ export namespace Prisma {
   export type PedidoUncheckedCreateWithoutProdutoInput = {
     id?: number
     mesaId: number
-    comandaId: number
+    comandaId?: number | null
     quantidade: number
     pedidoEncerradoId?: number | null
   }
@@ -6496,14 +6496,14 @@ export namespace Prisma {
     NOT?: PedidoScalarWhereInput | PedidoScalarWhereInput[]
     id?: IntFilter<"Pedido"> | number
     mesaId?: IntFilter<"Pedido"> | number
-    comandaId?: IntFilter<"Pedido"> | number
+    comandaId?: IntNullableFilter<"Pedido"> | number | null
     produtoId?: IntFilter<"Pedido"> | number
     quantidade?: IntFilter<"Pedido"> | number
     pedidoEncerradoId?: IntNullableFilter<"Pedido"> | number | null
   }
 
   export type PedidoCreateWithoutMesaInput = {
-    comandaId: number
+    comandaId?: number | null
     quantidade: number
     pedidoEncerrado?: PedidoEncerradoCreateNestedOneWithoutPedidosInput
     produto: ProdutoCreateNestedOneWithoutPedidosInput
@@ -6511,7 +6511,7 @@ export namespace Prisma {
 
   export type PedidoUncheckedCreateWithoutMesaInput = {
     id?: number
-    comandaId: number
+    comandaId?: number | null
     produtoId: number
     quantidade: number
     pedidoEncerradoId?: number | null
@@ -6674,7 +6674,7 @@ export namespace Prisma {
   }
 
   export type PedidoCreateWithoutPedidoEncerradoInput = {
-    comandaId: number
+    comandaId?: number | null
     quantidade: number
     mesa: MesaCreateNestedOneWithoutPedidosInput
     produto: ProdutoCreateNestedOneWithoutPedidosInput
@@ -6683,7 +6683,7 @@ export namespace Prisma {
   export type PedidoUncheckedCreateWithoutPedidoEncerradoInput = {
     id?: number
     mesaId: number
-    comandaId: number
+    comandaId?: number | null
     produtoId: number
     quantidade: number
   }
@@ -6717,13 +6717,13 @@ export namespace Prisma {
   export type PedidoCreateManyProdutoInput = {
     id?: number
     mesaId: number
-    comandaId: number
+    comandaId?: number | null
     quantidade: number
     pedidoEncerradoId?: number | null
   }
 
   export type PedidoUpdateWithoutProdutoInput = {
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     quantidade?: IntFieldUpdateOperationsInput | number
     mesa?: MesaUpdateOneRequiredWithoutPedidosNestedInput
     pedidoEncerrado?: PedidoEncerradoUpdateOneWithoutPedidosNestedInput
@@ -6732,7 +6732,7 @@ export namespace Prisma {
   export type PedidoUncheckedUpdateWithoutProdutoInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     quantidade?: IntFieldUpdateOperationsInput | number
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -6740,21 +6740,21 @@ export namespace Prisma {
   export type PedidoUncheckedUpdateManyWithoutProdutoInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     quantidade?: IntFieldUpdateOperationsInput | number
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PedidoCreateManyMesaInput = {
     id?: number
-    comandaId: number
+    comandaId?: number | null
     produtoId: number
     quantidade: number
     pedidoEncerradoId?: number | null
   }
 
   export type PedidoUpdateWithoutMesaInput = {
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     quantidade?: IntFieldUpdateOperationsInput | number
     pedidoEncerrado?: PedidoEncerradoUpdateOneWithoutPedidosNestedInput
     produto?: ProdutoUpdateOneRequiredWithoutPedidosNestedInput
@@ -6762,7 +6762,7 @@ export namespace Prisma {
 
   export type PedidoUncheckedUpdateWithoutMesaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     produtoId?: IntFieldUpdateOperationsInput | number
     quantidade?: IntFieldUpdateOperationsInput | number
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -6770,7 +6770,7 @@ export namespace Prisma {
 
   export type PedidoUncheckedUpdateManyWithoutMesaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     produtoId?: IntFieldUpdateOperationsInput | number
     quantidade?: IntFieldUpdateOperationsInput | number
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -6779,13 +6779,13 @@ export namespace Prisma {
   export type PedidoCreateManyPedidoEncerradoInput = {
     id?: number
     mesaId: number
-    comandaId: number
+    comandaId?: number | null
     produtoId: number
     quantidade: number
   }
 
   export type PedidoUpdateWithoutPedidoEncerradoInput = {
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     quantidade?: IntFieldUpdateOperationsInput | number
     mesa?: MesaUpdateOneRequiredWithoutPedidosNestedInput
     produto?: ProdutoUpdateOneRequiredWithoutPedidosNestedInput
@@ -6794,7 +6794,7 @@ export namespace Prisma {
   export type PedidoUncheckedUpdateWithoutPedidoEncerradoInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     produtoId?: IntFieldUpdateOperationsInput | number
     quantidade?: IntFieldUpdateOperationsInput | number
   }
@@ -6802,7 +6802,7 @@ export namespace Prisma {
   export type PedidoUncheckedUpdateManyWithoutPedidoEncerradoInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    comandaId?: IntFieldUpdateOperationsInput | number
+    comandaId?: NullableIntFieldUpdateOperationsInput | number | null
     produtoId?: IntFieldUpdateOperationsInput | number
     quantidade?: IntFieldUpdateOperationsInput | number
   }
