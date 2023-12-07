@@ -28,6 +28,7 @@ async function getComanda() {
 
 export default async function Home() {
   const mesas = await getMesa();
+  console.log(mesas)
   const comanda = await getComanda()
   return (
     <div className="container mx-auto p-5">
@@ -51,6 +52,7 @@ export default async function Home() {
               </Link>
             ))}
             {mesas.map((item) => (
+              item.nome ? null :
               <Link key={item.id} href={`/mesa/${item.id}`}>
                 <li
                   className={`p-4 rounded-lg text-lg font-medium flex justify-center ${

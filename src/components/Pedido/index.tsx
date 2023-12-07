@@ -43,28 +43,142 @@ const PedidoComponent = ({ produtos, mesaId }) => {
       [produtoId]: quantidade,
     }));
   };
+  const cerveja600 = produtos.filter(
+    (produto) => produto.categoria === "CERVEJA 600ML"
+  );
+  const cerveja1L = produtos.filter(
+    (produto) => produto.categoria === "CERVEJA LITRÃO"
+  );
+  const longNeck = produtos.filter(
+    (produto) => produto.categoria === "LONG NECK"
+  );
+  const drinks = produtos.filter((produto) => produto.categoria === "DRINKS");
+  const bebidas = produtos.filter((produto) => produto.categoria === "BEBIDAS");
+  const porcao = produtos.filter((produto) => produto.categoria === "PORÇÃO");
+  const tiraGosto = produtos.filter((produto) => produto.categoria === "TIRA GOSTO");
 
   return (
     <div className="flex flex-col gap-5 bg-slate-100 sm:p-4 p-2">
       <h2 className="text-gray-900 font-medium text-2xl">Lista de Produtos</h2>
       <ul className="list-disc list-inside flex flex-col gap-6 ">
-        {produtos.map((produto) => (
-          <>
-             <div key={produto.id} className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between">
-              <li className="font-medium">{produto.nome} - QTDE:</li>
-              <input
-                className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
-                type="number"
-                value={quantidades[produto.id] || 0}
-                onChange={(e) =>
-                  handleQuantidadeChange(
-                    produto.id,
-                    parseInt(e.target.value, 10)
-                  )
-                }
-              />
-            </div>
-          </>
+        <h2 className="text-xl font-bold">CERVEJA 600ML</h2>
+        {cerveja600.map((produto) => (
+          <div
+            key={produto.id}
+            className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
+          >
+            <li className="font-medium">{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+          </div>
+        ))}
+        <h2 className="text-xl font-bold">CERVEJA LITRÃO</h2>
+        {cerveja1L.map((produto) => (
+          <div
+            key={produto.id}
+            className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
+          >
+            <li className="font-medium">{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+          </div>
+        ))}
+        <h2 className="text-xl font-bold">CERVEJA LONG NECK</h2>
+        {longNeck.map((produto) => (
+          <div
+            key={produto.id}
+            className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
+          >
+            <li className="font-medium">{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+          </div>
+        ))}
+        <h2 className="text-xl font-bold">DRINKS</h2>
+        {drinks.map((produto) => (
+          <div
+            key={produto.id}
+            className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
+          >
+            <li className="font-medium">{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+          </div>
+        ))}
+        <h2 className="text-xl font-bold">BEBIDAS</h2>
+        {bebidas.map((produto) => (
+          <div
+            key={produto.id}
+            className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
+          >
+            <li className="font-medium">{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+          </div>
+        ))}
+        <h2 className="text-xl font-bold">PORÇÃO</h2>
+        {porcao.map((produto) => (
+          <div
+            key={produto.id}
+            className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
+          >
+            <li className="font-medium">{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+          </div>
+        ))}
+        <h2 className="text-xl font-bold">TIRA GOSTO</h2>
+        {tiraGosto.map((produto) => (
+          <div
+            key={produto.id}
+            className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
+          >
+            <li className="font-medium">{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+          </div>
         ))}
       </ul>
       <div className="flex gap-4">
