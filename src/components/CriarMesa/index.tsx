@@ -10,8 +10,8 @@ export const AdicionarMesa = () => {
         "Content-Type": "application/json"
        }, 
        body: JSON.stringify(mesa)
-    })
-    console.log(result)
+    }).then(res => window.location.reload()
+    )
   };
   return (
     <div className="flex flex-col gap-5 w-72">
