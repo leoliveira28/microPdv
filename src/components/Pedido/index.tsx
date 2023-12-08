@@ -55,9 +55,13 @@ const PedidoComponent = ({ produtos, mesaId }) => {
   const drinks = produtos.filter((produto) => produto.categoria === "DRINKS");
   const bebidas = produtos.filter((produto) => produto.categoria === "BEBIDAS");
   const porcao = produtos.filter((produto) => produto.categoria === "PORÇÃO");
-  const tiraGosto = produtos.filter((produto) => produto.categoria === "TIRA GOSTO");
-  const cervejaLata = produtos.filter((produto) => produto.categoria === "CERVEJA LATA");
-
+  const tiraGosto = produtos.filter(
+    (produto) => produto.categoria === "TIRA GOSTO"
+  );
+  const cervejaLata = produtos.filter(
+    (produto) => produto.categoria === "CERVEJA LATA"
+  );
+  const espeto = produtos.filter((produto) => produto.categoria === "ESPETO");
 
   return (
     <div className="flex flex-col gap-5 bg-slate-100 sm:p-4 p-2">
@@ -97,7 +101,7 @@ const PedidoComponent = ({ produtos, mesaId }) => {
             />
           </div>
         ))}
-                <h2 className="text-xl font-bold">CERVEJA LATA</h2>
+        <h2 className="text-xl font-bold">CERVEJA LATA</h2>
 
         {cervejaLata.map((produto) => (
           <div
@@ -114,8 +118,7 @@ const PedidoComponent = ({ produtos, mesaId }) => {
               }
             />
           </div>
-        )
-        )}
+        ))}
         <h2 className="text-xl font-bold">CERVEJA LONG NECK</h2>
         {longNeck.map((produto) => (
           <div
@@ -186,6 +189,23 @@ const PedidoComponent = ({ produtos, mesaId }) => {
         ))}
         <h2 className="text-xl font-bold">TIRA GOSTO</h2>
         {tiraGosto.map((produto) => (
+          <div
+            key={produto.id}
+            className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
+          >
+            <li className="font-medium">{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+          </div>
+        ))}
+        <h2 className="text-xl font-bold">ESPETOS</h2>
+        {espeto.map((produto) => (
           <div
             key={produto.id}
             className="flex hover:bg-slate-300 transition-all duration-500 items-center justify-between"
