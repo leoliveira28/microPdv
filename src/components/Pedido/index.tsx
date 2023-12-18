@@ -63,11 +63,41 @@ const PedidoComponent = ({ produtos, mesaId }) => {
   );
   const espeto = produtos.filter((produto) => produto.categoria === "ESPETO");
 
+  const dadosPorCategoria: { [key: string]: any[] } = {};
+  produtos.forEach((produto) => {
+    if (!dadosPorCategoria[produto.categoria]) {
+      dadosPorCategoria[produto.categoria] = [];
+    }
+    dadosPorCategoria[produto.categoria].push(produto);
+  });
   return (
     <div className="flex flex-col gap-5 bg-slate-100 sm:p-4 p-2">
       <h2 className="text-gray-900 font-medium text-2xl">Lista de Produtos</h2>
       <ul className="list-disc list-inside flex flex-col gap-6 ">
-        <h2 className="text-xl font-bold">CERVEJA 600ML</h2>
+      <div>
+      {Object.entries(dadosPorCategoria).map(([categoria, produtos]) => (
+        <div className="flex flex-col gap-4" key={categoria}>
+          <h2 className="text-xl font-bold">{categoria}</h2>
+          {produtos.map((produto) => (
+           <div
+            className="flex hover:bg-slate-300 transition-all duration-500  justify-between"
+          >
+            <li className="font-medium" key={produto.id}>{produto.nome} - QTDE:</li>
+            <input
+              className="p-2 bg-slate-200 sm:w-1/3 w-[50px] h-[35px] font-bold  rounded-sm"
+              type="number"
+              value={quantidades[produto.id] || 0}
+              onChange={(e) =>
+                handleQuantidadeChange(produto.id, parseInt(e.target.value, 10))
+              }
+            />
+                  </div>
+            ))}
+
+        </div>
+      ))}
+    </div>
+        {/* <h2 className="text-xl font-bold">CERVEJA 600ML</h2>
         {cerveja600.map((produto) => (
           <div
             key={produto.id}
@@ -83,8 +113,8 @@ const PedidoComponent = ({ produtos, mesaId }) => {
               }
             />
           </div>
-        ))}
-        <h2 className="text-xl font-bold">CERVEJA LITRÃO</h2>
+        ))} */}
+        {/* <h2 className="text-xl font-bold">CERVEJA LITRÃO</h2>
         {cerveja1L.map((produto) => (
           <div
             key={produto.id}
@@ -220,7 +250,7 @@ const PedidoComponent = ({ produtos, mesaId }) => {
               }
             />
           </div>
-        ))}
+        ))} */}
       </ul>
       <div className="flex gap-4">
         <button

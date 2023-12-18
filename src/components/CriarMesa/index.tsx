@@ -5,13 +5,14 @@ export const AdicionarMesa = () => {
   const [mesa, setMesa] = useState("");
   const [loading, setLoading] = useState(false)
   const handleAdicionarMesa = () => {
+    setLoading(!loading)
     const result = fetch("/api/adicionar-mesa", {
        method: "POST",
        headers: {
         "Content-Type": "application/json"
        }, 
        body: JSON.stringify(mesa)
-    }).then(res => res.statusText === "OK" && setLoading(!loading)).then(() => window.location.reload())
+    }).then(res => res.statusText === "OK").then(() => window.location.reload())
   };
   return (
     <div className="flex flex-col gap-5 w-72">
