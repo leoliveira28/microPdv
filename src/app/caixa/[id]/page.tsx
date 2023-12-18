@@ -20,7 +20,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
   const [pedido, setPedido] = useState<Pedido[]>();
   const [formaDePagamento, setFormaDePagamento] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [mesa, setMesa] = useState("")
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -41,9 +41,8 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ mesaId }), // Make sure to stringify the object
+          body: JSON.stringify({ mesaId }), 
         });
-
         const data = await response.json();
         setPedido(data.data);
       } catch (error) {
@@ -85,11 +84,22 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
     window.location.replace("/caixa")
   };
 
+  const handleEexcluirComanda = async () => {
+    const mesaId = parseInt(params.id);
+    const result = await fetch("/api/excluir-comanda", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mesaId),
+    });
+    window.location.replace("/caixa")
+  }
   return (
     <div className="container mx-auto p-5">
       <div className="flex flex-col gap-4 bg-slate-100 p-5 rounded-md">
         <h1 className="text-xl font-bold text-gray-800">
-          Consumo Mesa: {params.id}
+          Consumo Mesa / Comanda: {params.id}
         </h1>
         <ul className="list-disc list-inside">
           {pedido &&
@@ -110,6 +120,9 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
           </button>
           <button className="bg-green-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all">
             <Link href={"/caixa"}>Voltar</Link>
+          </button>
+          <button onClick={handleEexcluirComanda} className="bg-red-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all">
+           Excluir 
           </button>
         </div>
       </div>

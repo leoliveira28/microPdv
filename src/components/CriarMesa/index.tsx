@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export const AdicionarMesa = () => {
   const [mesa, setMesa] = useState("");
+  const [loading, setLoading] = useState(false)
   const handleAdicionarMesa = () => {
     const result = fetch("/api/adicionar-mesa", {
        method: "POST",
@@ -10,8 +11,7 @@ export const AdicionarMesa = () => {
         "Content-Type": "application/json"
        }, 
        body: JSON.stringify(mesa)
-    }).then(res => window.location.reload()
-    )
+    }).then(res => res.statusText === "OK" && setLoading(!loading)).then(() => window.location.reload())
   };
   return (
     <div className="flex flex-col gap-5 w-72">
@@ -21,9 +21,15 @@ export const AdicionarMesa = () => {
         className="bg-slate-200 p-2"
         onChange={(e) => setMesa(e.target.value)}
       />
-      <button onClick={handleAdicionarMesa} className="p-2 bg-green-500 rounded-md text-slate-900">
-        Adicionar
-      </button>
+ <button
+      onClick={handleAdicionarMesa}
+      className={`p-2 rounded-md ${
+        loading ? 'bg-gray-500 cursor-not-allowed' : 'bg-green-500'
+      } text-slate-900`}
+      disabled={loading}
+    >
+      {loading ? 'Carregando...' : 'Adicionar'}
+    </button>
     </div>
   );
 };

@@ -28,7 +28,6 @@ async function getComanda() {
 
 export default async function Home() {
   const mesas = await getMesa();
-  console.log(mesas)
   const comanda = await getComanda()
   return (
     <div className="container mx-auto p-5">
