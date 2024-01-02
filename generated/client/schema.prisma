@@ -10,11 +10,16 @@ datasource db {
 }
 
 model Produto {
-  id            Int             @id @default(autoincrement())
-  nome          String
-  preco         Float
-  categoria     String
-  pedidos       Pedido[]
+  id        Int      @id @default(autoincrement())
+  nome      String
+  preco     Float
+  categoria String
+  pedidos   Pedido[]
+}
+
+model Categoria {
+  id   Int    @id @default(autoincrement())
+  nome String
 }
 
 model Mesa {
@@ -45,5 +50,3 @@ model PedidoEncerrado {
   data           DateTime
   pedidos        Pedido[]
 }
-
-

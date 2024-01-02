@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Produto = $Result.DefaultSelection<Prisma.$ProdutoPayload>
 /**
+ * Model Categoria
+ * 
+ */
+export type Categoria = $Result.DefaultSelection<Prisma.$CategoriaPayload>
+/**
  * Model Mesa
  * 
  */
@@ -165,6 +170,16 @@ export class PrismaClient<
     * ```
     */
   get produto(): Prisma.ProdutoDelegate<ExtArgs>;
+
+  /**
+   * `prisma.categoria`: Exposes CRUD operations for the **Categoria** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categorias
+    * const categorias = await prisma.categoria.findMany()
+    * ```
+    */
+  get categoria(): Prisma.CategoriaDelegate<ExtArgs>;
 
   /**
    * `prisma.mesa`: Exposes CRUD operations for the **Mesa** model.
@@ -666,6 +681,7 @@ export namespace Prisma {
 
   export const ModelName: {
     Produto: 'Produto',
+    Categoria: 'Categoria',
     Mesa: 'Mesa',
     Pedido: 'Pedido',
     PedidoEncerrado: 'PedidoEncerrado'
@@ -685,7 +701,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'produto' | 'mesa' | 'pedido' | 'pedidoEncerrado'
+      modelProps: 'produto' | 'categoria' | 'mesa' | 'pedido' | 'pedidoEncerrado'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -752,6 +768,72 @@ export namespace Prisma {
           count: {
             args: Prisma.ProdutoCountArgs<ExtArgs>,
             result: $Utils.Optional<ProdutoCountAggregateOutputType> | number
+          }
+        }
+      }
+      Categoria: {
+        payload: Prisma.$CategoriaPayload<ExtArgs>
+        fields: Prisma.CategoriaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CategoriaFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CategoriaFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          findFirst: {
+            args: Prisma.CategoriaFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CategoriaFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          findMany: {
+            args: Prisma.CategoriaFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>[]
+          }
+          create: {
+            args: Prisma.CategoriaCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          createMany: {
+            args: Prisma.CategoriaCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.CategoriaDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          update: {
+            args: Prisma.CategoriaUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          deleteMany: {
+            args: Prisma.CategoriaDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CategoriaUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.CategoriaUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          aggregate: {
+            args: Prisma.CategoriaAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateCategoria>
+          }
+          groupBy: {
+            args: Prisma.CategoriaGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CategoriaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CategoriaCountArgs<ExtArgs>,
+            result: $Utils.Optional<CategoriaCountAggregateOutputType> | number
           }
         }
       }
@@ -2167,6 +2249,877 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: ProdutoInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Categoria
+   */
+
+  export type AggregateCategoria = {
+    _count: CategoriaCountAggregateOutputType | null
+    _avg: CategoriaAvgAggregateOutputType | null
+    _sum: CategoriaSumAggregateOutputType | null
+    _min: CategoriaMinAggregateOutputType | null
+    _max: CategoriaMaxAggregateOutputType | null
+  }
+
+  export type CategoriaAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CategoriaSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CategoriaMinAggregateOutputType = {
+    id: number | null
+    nome: string | null
+  }
+
+  export type CategoriaMaxAggregateOutputType = {
+    id: number | null
+    nome: string | null
+  }
+
+  export type CategoriaCountAggregateOutputType = {
+    id: number
+    nome: number
+    _all: number
+  }
+
+
+  export type CategoriaAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type CategoriaSumAggregateInputType = {
+    id?: true
+  }
+
+  export type CategoriaMinAggregateInputType = {
+    id?: true
+    nome?: true
+  }
+
+  export type CategoriaMaxAggregateInputType = {
+    id?: true
+    nome?: true
+  }
+
+  export type CategoriaCountAggregateInputType = {
+    id?: true
+    nome?: true
+    _all?: true
+  }
+
+  export type CategoriaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categoria to aggregate.
+     */
+    where?: CategoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categorias to fetch.
+     */
+    orderBy?: CategoriaOrderByWithRelationInput | CategoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CategoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Categorias
+    **/
+    _count?: true | CategoriaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CategoriaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CategoriaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CategoriaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CategoriaMaxAggregateInputType
+  }
+
+  export type GetCategoriaAggregateType<T extends CategoriaAggregateArgs> = {
+        [P in keyof T & keyof AggregateCategoria]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCategoria[P]>
+      : GetScalarType<T[P], AggregateCategoria[P]>
+  }
+
+
+
+
+  export type CategoriaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoriaWhereInput
+    orderBy?: CategoriaOrderByWithAggregationInput | CategoriaOrderByWithAggregationInput[]
+    by: CategoriaScalarFieldEnum[] | CategoriaScalarFieldEnum
+    having?: CategoriaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CategoriaCountAggregateInputType | true
+    _avg?: CategoriaAvgAggregateInputType
+    _sum?: CategoriaSumAggregateInputType
+    _min?: CategoriaMinAggregateInputType
+    _max?: CategoriaMaxAggregateInputType
+  }
+
+  export type CategoriaGroupByOutputType = {
+    id: number
+    nome: string
+    _count: CategoriaCountAggregateOutputType | null
+    _avg: CategoriaAvgAggregateOutputType | null
+    _sum: CategoriaSumAggregateOutputType | null
+    _min: CategoriaMinAggregateOutputType | null
+    _max: CategoriaMaxAggregateOutputType | null
+  }
+
+  type GetCategoriaGroupByPayload<T extends CategoriaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CategoriaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CategoriaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CategoriaGroupByOutputType[P]>
+            : GetScalarType<T[P], CategoriaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CategoriaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+  }, ExtArgs["result"]["categoria"]>
+
+  export type CategoriaSelectScalar = {
+    id?: boolean
+    nome?: boolean
+  }
+
+
+  export type $CategoriaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Categoria"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nome: string
+    }, ExtArgs["result"]["categoria"]>
+    composites: {}
+  }
+
+
+  type CategoriaGetPayload<S extends boolean | null | undefined | CategoriaDefaultArgs> = $Result.GetResult<Prisma.$CategoriaPayload, S>
+
+  type CategoriaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CategoriaFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: CategoriaCountAggregateInputType | true
+    }
+
+  export interface CategoriaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Categoria'], meta: { name: 'Categoria' } }
+    /**
+     * Find zero or one Categoria that matches the filter.
+     * @param {CategoriaFindUniqueArgs} args - Arguments to find a Categoria
+     * @example
+     * // Get one Categoria
+     * const categoria = await prisma.categoria.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends CategoriaFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaFindUniqueArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Categoria that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {CategoriaFindUniqueOrThrowArgs} args - Arguments to find a Categoria
+     * @example
+     * // Get one Categoria
+     * const categoria = await prisma.categoria.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends CategoriaFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Categoria that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaFindFirstArgs} args - Arguments to find a Categoria
+     * @example
+     * // Get one Categoria
+     * const categoria = await prisma.categoria.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends CategoriaFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaFindFirstArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Categoria that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaFindFirstOrThrowArgs} args - Arguments to find a Categoria
+     * @example
+     * // Get one Categoria
+     * const categoria = await prisma.categoria.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends CategoriaFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Categorias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Categorias
+     * const categorias = await prisma.categoria.findMany()
+     * 
+     * // Get first 10 Categorias
+     * const categorias = await prisma.categoria.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const categoriaWithIdOnly = await prisma.categoria.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends CategoriaFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Categoria.
+     * @param {CategoriaCreateArgs} args - Arguments to create a Categoria.
+     * @example
+     * // Create one Categoria
+     * const Categoria = await prisma.categoria.create({
+     *   data: {
+     *     // ... data to create a Categoria
+     *   }
+     * })
+     * 
+    **/
+    create<T extends CategoriaCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaCreateArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Categorias.
+     *     @param {CategoriaCreateManyArgs} args - Arguments to create many Categorias.
+     *     @example
+     *     // Create many Categorias
+     *     const categoria = await prisma.categoria.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends CategoriaCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Categoria.
+     * @param {CategoriaDeleteArgs} args - Arguments to delete one Categoria.
+     * @example
+     * // Delete one Categoria
+     * const Categoria = await prisma.categoria.delete({
+     *   where: {
+     *     // ... filter to delete one Categoria
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends CategoriaDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaDeleteArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Categoria.
+     * @param {CategoriaUpdateArgs} args - Arguments to update one Categoria.
+     * @example
+     * // Update one Categoria
+     * const categoria = await prisma.categoria.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends CategoriaUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaUpdateArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Categorias.
+     * @param {CategoriaDeleteManyArgs} args - Arguments to filter Categorias to delete.
+     * @example
+     * // Delete a few Categorias
+     * const { count } = await prisma.categoria.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends CategoriaDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categorias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Categorias
+     * const categoria = await prisma.categoria.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends CategoriaUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Categoria.
+     * @param {CategoriaUpsertArgs} args - Arguments to update or create a Categoria.
+     * @example
+     * // Update or create a Categoria
+     * const categoria = await prisma.categoria.upsert({
+     *   create: {
+     *     // ... data to create a Categoria
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Categoria we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends CategoriaUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaUpsertArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Categorias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaCountArgs} args - Arguments to filter Categorias to count.
+     * @example
+     * // Count the number of Categorias
+     * const count = await prisma.categoria.count({
+     *   where: {
+     *     // ... the filter for the Categorias we want to count
+     *   }
+     * })
+    **/
+    count<T extends CategoriaCountArgs>(
+      args?: Subset<T, CategoriaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CategoriaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Categoria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CategoriaAggregateArgs>(args: Subset<T, CategoriaAggregateArgs>): Prisma.PrismaPromise<GetCategoriaAggregateType<T>>
+
+    /**
+     * Group by Categoria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CategoriaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CategoriaGroupByArgs['orderBy'] }
+        : { orderBy?: CategoriaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CategoriaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoriaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Categoria model
+   */
+  readonly fields: CategoriaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Categoria.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CategoriaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Categoria model
+   */ 
+  interface CategoriaFieldRefs {
+    readonly id: FieldRef<"Categoria", 'Int'>
+    readonly nome: FieldRef<"Categoria", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Categoria findUnique
+   */
+  export type CategoriaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Filter, which Categoria to fetch.
+     */
+    where: CategoriaWhereUniqueInput
+  }
+
+
+  /**
+   * Categoria findUniqueOrThrow
+   */
+  export type CategoriaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Filter, which Categoria to fetch.
+     */
+    where: CategoriaWhereUniqueInput
+  }
+
+
+  /**
+   * Categoria findFirst
+   */
+  export type CategoriaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Filter, which Categoria to fetch.
+     */
+    where?: CategoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categorias to fetch.
+     */
+    orderBy?: CategoriaOrderByWithRelationInput | CategoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categorias.
+     */
+    cursor?: CategoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categorias.
+     */
+    distinct?: CategoriaScalarFieldEnum | CategoriaScalarFieldEnum[]
+  }
+
+
+  /**
+   * Categoria findFirstOrThrow
+   */
+  export type CategoriaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Filter, which Categoria to fetch.
+     */
+    where?: CategoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categorias to fetch.
+     */
+    orderBy?: CategoriaOrderByWithRelationInput | CategoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categorias.
+     */
+    cursor?: CategoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categorias.
+     */
+    distinct?: CategoriaScalarFieldEnum | CategoriaScalarFieldEnum[]
+  }
+
+
+  /**
+   * Categoria findMany
+   */
+  export type CategoriaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Filter, which Categorias to fetch.
+     */
+    where?: CategoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categorias to fetch.
+     */
+    orderBy?: CategoriaOrderByWithRelationInput | CategoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Categorias.
+     */
+    cursor?: CategoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categorias.
+     */
+    skip?: number
+    distinct?: CategoriaScalarFieldEnum | CategoriaScalarFieldEnum[]
+  }
+
+
+  /**
+   * Categoria create
+   */
+  export type CategoriaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Categoria.
+     */
+    data: XOR<CategoriaCreateInput, CategoriaUncheckedCreateInput>
+  }
+
+
+  /**
+   * Categoria createMany
+   */
+  export type CategoriaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Categorias.
+     */
+    data: CategoriaCreateManyInput | CategoriaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Categoria update
+   */
+  export type CategoriaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Categoria.
+     */
+    data: XOR<CategoriaUpdateInput, CategoriaUncheckedUpdateInput>
+    /**
+     * Choose, which Categoria to update.
+     */
+    where: CategoriaWhereUniqueInput
+  }
+
+
+  /**
+   * Categoria updateMany
+   */
+  export type CategoriaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Categorias.
+     */
+    data: XOR<CategoriaUpdateManyMutationInput, CategoriaUncheckedUpdateManyInput>
+    /**
+     * Filter which Categorias to update
+     */
+    where?: CategoriaWhereInput
+  }
+
+
+  /**
+   * Categoria upsert
+   */
+  export type CategoriaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Categoria to update in case it exists.
+     */
+    where: CategoriaWhereUniqueInput
+    /**
+     * In case the Categoria found by the `where` argument doesn't exist, create a new Categoria with this data.
+     */
+    create: XOR<CategoriaCreateInput, CategoriaUncheckedCreateInput>
+    /**
+     * In case the Categoria was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CategoriaUpdateInput, CategoriaUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Categoria delete
+   */
+  export type CategoriaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Filter which Categoria to delete.
+     */
+    where: CategoriaWhereUniqueInput
+  }
+
+
+  /**
+   * Categoria deleteMany
+   */
+  export type CategoriaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categorias to delete
+     */
+    where?: CategoriaWhereInput
+  }
+
+
+  /**
+   * Categoria without action
+   */
+  export type CategoriaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
   }
 
 
@@ -5155,6 +6108,14 @@ export namespace Prisma {
   export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
 
 
+  export const CategoriaScalarFieldEnum: {
+    id: 'id',
+    nome: 'nome'
+  };
+
+  export type CategoriaScalarFieldEnum = (typeof CategoriaScalarFieldEnum)[keyof typeof CategoriaScalarFieldEnum]
+
+
   export const MesaScalarFieldEnum: {
     id: 'id',
     nome: 'nome',
@@ -5326,6 +6287,45 @@ export namespace Prisma {
     nome?: StringWithAggregatesFilter<"Produto"> | string
     preco?: FloatWithAggregatesFilter<"Produto"> | number
     categoria?: StringWithAggregatesFilter<"Produto"> | string
+  }
+
+  export type CategoriaWhereInput = {
+    AND?: CategoriaWhereInput | CategoriaWhereInput[]
+    OR?: CategoriaWhereInput[]
+    NOT?: CategoriaWhereInput | CategoriaWhereInput[]
+    id?: IntFilter<"Categoria"> | number
+    nome?: StringFilter<"Categoria"> | string
+  }
+
+  export type CategoriaOrderByWithRelationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+  }
+
+  export type CategoriaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CategoriaWhereInput | CategoriaWhereInput[]
+    OR?: CategoriaWhereInput[]
+    NOT?: CategoriaWhereInput | CategoriaWhereInput[]
+    nome?: StringFilter<"Categoria"> | string
+  }, "id">
+
+  export type CategoriaOrderByWithAggregationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    _count?: CategoriaCountOrderByAggregateInput
+    _avg?: CategoriaAvgOrderByAggregateInput
+    _max?: CategoriaMaxOrderByAggregateInput
+    _min?: CategoriaMinOrderByAggregateInput
+    _sum?: CategoriaSumOrderByAggregateInput
+  }
+
+  export type CategoriaScalarWhereWithAggregatesInput = {
+    AND?: CategoriaScalarWhereWithAggregatesInput | CategoriaScalarWhereWithAggregatesInput[]
+    OR?: CategoriaScalarWhereWithAggregatesInput[]
+    NOT?: CategoriaScalarWhereWithAggregatesInput | CategoriaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Categoria"> | number
+    nome?: StringWithAggregatesFilter<"Categoria"> | string
   }
 
   export type MesaWhereInput = {
@@ -5553,6 +6553,38 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     preco?: FloatFieldUpdateOperationsInput | number
     categoria?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoriaCreateInput = {
+    nome: string
+  }
+
+  export type CategoriaUncheckedCreateInput = {
+    id?: number
+    nome: string
+  }
+
+  export type CategoriaUpdateInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoriaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoriaCreateManyInput = {
+    id?: number
+    nome: string
+  }
+
+  export type CategoriaUpdateManyMutationInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoriaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
   }
 
   export type MesaCreateInput = {
@@ -5845,6 +6877,29 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type CategoriaCountOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+  }
+
+  export type CategoriaAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type CategoriaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+  }
+
+  export type CategoriaMinOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+  }
+
+  export type CategoriaSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -6828,6 +7883,10 @@ export namespace Prisma {
      * @deprecated Use ProdutoDefaultArgs instead
      */
     export type ProdutoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProdutoDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CategoriaDefaultArgs instead
+     */
+    export type CategoriaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CategoriaDefaultArgs<ExtArgs>
     /**
      * @deprecated Use MesaDefaultArgs instead
      */
