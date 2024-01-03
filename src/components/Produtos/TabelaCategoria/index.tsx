@@ -1,16 +1,23 @@
 "use client";
 
-import { MagnifyingGlass, PencilSimple, X } from "@phosphor-icons/react";
+import {
+  CircleNotch,
+  MagnifyingGlass,
+  PencilSimple,
+  SpinnerGap,
+  X,
+} from "@phosphor-icons/react";
 import { useState } from "react";
 
 const CategoryTable = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [idCategoria, setIdCategoria] = useState(0);
-  const [novaCategoria, setNovaCategoria] = useState('')
+  const [idCategoria, setIdCategoria] = useState({ id: 0, nome: "" });
+  const [novaCategoria, setNovaCategoria] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const openModal = (id) => {
     setIsModalOpen(true);
     const nomeCategoria = data.find((item) => item.id === id);
-    setIdCategoria(nomeCategoria.nome);
+    setIdCategoria(nomeCategoria);
   };
 
   const closeModal = () => {
@@ -19,15 +26,32 @@ const CategoryTable = ({ data }) => {
   const modalClasses = isModalOpen
     ? "fixed inset-0 flex items-center justify-center z-50"
     : "hidden";
+
   const handleAlterarCategoria = () => {
-    const res = fetch("/api/consumo-mesa", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({novaCategoria}), 
-      });
+    setIsLoading(!isLoading)
+    const dataCategoria = {
+      id: idCategoria.id,
+      nome: novaCategoria,
+    };
+    setIsLoading(!isLoading);
+    console.log(dataCategoria);
+    const res = fetch("/api/altera-categoria", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataCategoria),
+    }).then((res) => res.ok ? window.location.reload() : null)
   };
+  const handleApagarCategoria = (id) => {
+    const res = fetch("/api/apaga-categoria", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(id),
+    }).then((res) => res.ok ? window.location.reload() : null)
+  }
   return (
     <div className="flex flex-col gap-2">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -82,12 +106,15 @@ const CategoryTable = ({ data }) => {
                 />
               </td>
               <td id={item.id} className="px-6 py-4">
-                <X className="text-gray-800 hover:cursor-pointer" size={24} />
+                <X onClick={() => handleApagarCategoria(item.id)} className="text-gray-800 hover:cursor-pointer" size={24} />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {
+        //INICIO MODAL
+      }
       {isModalOpen && (
         <div className={modalClasses}>
           <div className="fixed inset-0 bg-black opacity-50"></div>
@@ -96,18 +123,31 @@ const CategoryTable = ({ data }) => {
             <div className="flex flex-col gap-3">
               <h2 className="font-medium ">Alterar categoria:</h2>
               <input
-                value={idCategoria}
                 className="p-2 bg-slate-300 rounded-md"
                 onChange={(e) => setNovaCategoria(e.target.value)}
               />
               <div className="flex flex-col gap-4">
                 <div className="flex gap-3">
-                  <button
-                    onClick={handleAlterarCategoria}
-                    className="p-2 bg-green-500 hover:brightness-95 rounded-md"
-                  >
-                    Alterar
-                  </button>
+                  {!isLoading ? (
+                    <button
+                      onClick={handleAlterarCategoria}
+                      className={`p-2 bg-green-500 hover:brightness-95 rounded-md`}
+                    >
+                      Alterar
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      type="button"
+                      className="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-slate-300 rounded-lg border border-gray-200 hover:bg-gray-400 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 inline-flex items-center"
+                    >
+                      <SpinnerGap 
+                        className="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600"
+                        size={32}
+                      />
+                      Carregando
+                    </button>
+                  )}
                   <button
                     className="p-2 bg-yellow-500 hover:brightness-95 rounded-md"
                     onClick={() => {
