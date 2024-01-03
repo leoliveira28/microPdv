@@ -53,8 +53,9 @@ export const CadastroProduto = ({ categoria }) => {
               />
               <label htmlFor="categoria">Categoria</label>
               <select onChange={(e) => setNovoProduto({ ...novoProduto, categoria: e.target.value })} className="bg-slate-300 p-2 rounded-md" name="categoria">
+                <option value="">Selecionar</option>
                 {categoria.map((item, i) => (
-                  <option key={i} className="p-2 bg-slate-300" value={item.nome}>
+                  <option key={i} className="p-2 bg-slate-300" value={item.id}>
                     {item.nome}
                   </option>
                 ))}

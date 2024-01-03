@@ -1,7 +1,7 @@
 "use client";
 import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 interface Produto {
   id: number;
@@ -21,11 +21,10 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
   const [pedido, setPedido] = useState<Pedido[]>();
   const [formaDePagamento, setFormaDePagamento] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [mesa, setMesa] = useState("")
+  const [valorParcial, setValorParcial] = useState('')
   const openModal = () => {
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -42,7 +41,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ mesaId }), 
+          body: JSON.stringify({ mesaId }),
         });
         const data = await response.json();
         setPedido(data.data);
@@ -64,7 +63,6 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
       setTotalConta(newTotalConta);
     }
   }, [pedido]);
-
   const fecharMesa = async () => {
     const mesaId = parseInt(params.id);
     const pedidoEncerrado = {
@@ -72,7 +70,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
       valor: totalConta,
       formaPagamento: formaDePagamento,
       data: new Date(),
-       pedidos: pedido
+      pedidos: pedido,
     };
     closeModal();
     const result = await fetch("/api/fechar-mesa", {
@@ -82,9 +80,24 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
       },
       body: JSON.stringify(pedidoEncerrado),
     });
-    window.location.replace("/caixa")
+    window.location.replace("/caixa");
   };
 
+  const fecharMesaParcial = async (id) => {
+    const pedidoParcial = {
+      mesaId: parseInt(params.id),
+      valorParcial: parseFloat(valorParcial),
+      formaPagamento: "Parcial",
+      data: new Date()
+    }
+    const result = await fetch("/api/pedido-parcial", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pedidoParcial),
+    });
+  };
   const handleEexcluirComanda = async () => {
     const mesaId = parseInt(params.id);
     const result = await fetch("/api/excluir-comanda", {
@@ -94,94 +107,110 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
       },
       body: JSON.stringify(mesaId),
     });
-    window.location.replace("/caixa")
-  }
+    window.location.replace("/caixa");
+  };
   return (
     <div className="flex p-5">
-    <Navbar />
-    <div className="container mx-auto p-5">
-      <div className="flex flex-col gap-4 bg-slate-100 p-5 rounded-md">
-        <h1 className="text-xl font-bold text-gray-800">
-          Consumo Mesa / Comanda: {params.id}
-        </h1>
-        <ul className="list-disc list-inside">
-          {pedido &&
-            pedido.map((item) => (
-              <li key={item.id}>
-                {item.produto.nome} - PREÇO {item.produto.preco} - QTDE:{" "}
-                {item.quantidade}
-              </li>
-            ))}
-        </ul>
-        <strong>Total da mesa: R$ {totalConta}</strong>
-        <div className="flex gap-4">
-          <button
-            onClick={openModal}
-            className="bg-yellow-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all"
-          >
-            Ecencerrar Mesa
-          </button>
-          <button className="bg-green-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all">
-            <Link href={"/caixa"}>Voltar</Link>
-          </button>
-          <button onClick={handleEexcluirComanda} className="bg-red-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all">
-           Excluir 
-          </button>
+      <Navbar />
+      <div className="container mx-auto p-5">
+        <div className="flex flex-col gap-4 bg-slate-200 p-5 rounded-md shadow-md">
+          <h1 className="text-xl font-bold text-gray-800">
+            Consumo Mesa / Comanda: {params.id}
+          </h1>
+          <ul className="list-disc list-inside">
+            {pedido &&
+              pedido.map((item) => (
+                <li key={item.id}>
+                  {item.produto.nome} - PREÇO {item.produto.preco} - QTDE:{" "}
+                  {item.quantidade}
+                </li>
+              ))}
+          </ul>
+          <strong>Total da mesa: R$ {totalConta}</strong>
+          <div className="flex gap-4">
+            <button
+              onClick={openModal}
+              className="bg-yellow-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all"
+            >
+              Ecencerrar Mesa
+            </button>
+            <button className="bg-green-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all">
+              <Link href={"/caixa"}>Voltar</Link>
+            </button>
+            <button
+              onClick={handleEexcluirComanda}
+              className="bg-red-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all"
+            >
+              Excluir
+            </button>
+          </div>
         </div>
-      </div>
-      {isModalOpen && (
-        <div className={modalClasses}>
-          <div className="fixed inset-0 bg-black opacity-50"></div>
-          <div className="bg-white p-4 rounded shadow-lg z-10">
-            <div className="flex justify-end"></div>
-            <div className="flex flex-col gap-3">
-              <h2 className="text-lg font-medium">Resumo Mesa {params.id}</h2>
-              <div className="flex flex-col gap-4">
-                {pedido.map((item) => (
-                  <li key={item.id}>
-                    {item.produto.nome} - PREÇO {item.produto.preco} - QTDE:{" "}
-                    {item.quantidade}
-                  </li>
-                ))}
-                <select
-                  onChange={(e) => setFormaDePagamento(e.target.value)}
-                  className="bg-slate-100 p-2"
-                  name="pagamento"
-                >
-                  <option value="null">Forma de pagamento:</option>
-                  <option value="Pix">Pix</option>
-                  <option value="Dinheiro">Dinheiro</option>
-                  <option value="Débito">Débito</option>
-                  <option value="Crédito">Crédito</option>
-                </select>
-                <strong>Total da mesa: R$ {totalConta}</strong>
-                <div className="flex gap-3">
-                  <button
-                    className="p-2 bg-green-500 hover:brightness-95 rounded-md"
-                    onClick={() =>
-                      formaDePagamento === "" ? null : fecharMesa()
-                    }
+        {isModalOpen && (
+          <div className={modalClasses}>
+            <div className="fixed inset-0 bg-black opacity-50"></div>
+            <div className="bg-white p-4 rounded shadow-lg z-10">
+              <div className="flex justify-end"></div>
+              <div className="flex flex-col gap-3">
+                <h2 className="text-lg font-medium">Resumo Mesa {params.id}</h2>
+                <div className="flex flex-col gap-4">
+                  {pedido.map((item) => (
+                    <li key={item.id}>
+                      {item.produto.nome} - PREÇO {item.produto.preco} - QTDE:{" "}
+                      {item.quantidade}
+                    </li>
+                  ))}
+                  <select
+                    onChange={(e) => setFormaDePagamento(e.target.value)}
+                    className="bg-slate-100 p-2"
+                    name="pagamento"
                   >
-                    Encerrar
-                  </button>
-                  <button
-                    className="p-2 bg-yellow-500 hover:brightness-95 rounded-md"
-                    onClick={() => {
-                      setFormaDePagamento("");
-                      closeModal();
-                    }}
-                  >
-                    Cancelar
-                  </button>
+                    <option value="null">Forma de pagamento:</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Débito">Débito</option>
+                    <option value="Crédito">Crédito</option>
+                    <option value="parcial">Parcial</option>
+                  </select>
+                  <strong>Total da mesa: R$ {totalConta}</strong>
+                  {formaDePagamento === "parcial" ? (
+                      <div className="flex flex-col gap-2">
+                        <label htmlFor="parcial">Valor Parcial:</label>
+                        <input onChange={(e) => setValorParcial(e.target.value)}  name="parcial" type="number" className="p-2 bg-slate-200 rounded-md" />
+                        <button
+                          className="p-2 bg-blue-500 hover:brightness-95 rounded-md"
+                          onClick={() => fecharMesaParcial(params.id)}
+                        >
+                          Parcial
+                        </button>
+                      </div>
+                    ) : null}
+
+                  <div className="flex gap-3">
+                    <button
+                      className="p-2 bg-green-500 hover:brightness-95 rounded-md"
+                      onClick={() =>
+                        formaDePagamento === "" ? null : fecharMesa()
+                      }
+                    >
+                      Encerrar
+                    </button>
+                    <button
+                      className="p-2 bg-yellow-500 hover:brightness-95 rounded-md"
+                      onClick={() => {
+                        setFormaDePagamento("");
+                        closeModal();
+                      }}
+                    >
+                      Cancelar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
-    </div>
-
   );
 };
 

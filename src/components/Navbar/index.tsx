@@ -16,10 +16,10 @@ export const Navbar = () => {
   const [trigger, setTrigger] = useState(false);
   return (
     <div>
-        <div onClick={() => setTrigger(!trigger)}>
-        <strong>Abrir</strong>
+        <Link href={""} onClick={() => setTrigger(!trigger)}>
+        <strong>Abrir Menu</strong>
         <CaretDoubleRight size={32} />
-        </div>
+        </Link>
       <aside
         className={`bg-gray-400 p-5 h-screen rounded-md shadow-md fixed top-0 bottom-0 w-[200px] ${
           !trigger ? "-left-52" : "left-0"

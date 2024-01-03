@@ -10,16 +10,18 @@ datasource db {
 }
 
 model Produto {
-  id        Int      @id @default(autoincrement())
-  nome      String
-  preco     Float
-  categoria String
-  pedidos   Pedido[]
+  id          Int       @id @default(autoincrement())
+  nome        String
+  preco       Float
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId Int
+  pedidos     Pedido[]
 }
 
 model Categoria {
-  id   Int    @id @default(autoincrement())
-  nome String
+  id       Int       @id @default(autoincrement())
+  nome     String
+  produtos Produto[]
 }
 
 model Mesa {
@@ -45,7 +47,8 @@ model Pedido {
 model PedidoEncerrado {
   id             Int      @id @default(autoincrement())
   mesaId         Int
-  valor          Float
+  valor          Float?
+  valorParcial   Float?
   formaPagamento String
   data           DateTime
   pedidos        Pedido[]

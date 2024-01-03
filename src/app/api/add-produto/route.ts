@@ -7,8 +7,10 @@ export async function POST(request) {
         const result = await prisma.produto.create({
             data: {
                 nome: novoProduto.nome,
-                categoria: novoProduto.categoria,
-                preco: parseFloat(novoProduto.preco)
+                preco: parseFloat(novoProduto.preco),
+                categoria: {
+                    connect: { id: parseInt(novoProduto.categoria)}
+                }
             }
         });
           return NextResponse.json({ success: true, data: result });

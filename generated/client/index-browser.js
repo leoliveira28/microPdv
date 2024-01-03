@@ -111,7 +111,7 @@ exports.Prisma.ProdutoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   preco: 'preco',
-  categoria: 'categoria'
+  categoriaId: 'categoriaId'
 };
 
 exports.Prisma.CategoriaScalarFieldEnum = {
@@ -139,6 +139,7 @@ exports.Prisma.PedidoEncerradoScalarFieldEnum = {
   id: 'id',
   mesaId: 'mesaId',
   valor: 'valor',
+  valorParcial: 'valorParcial',
   formaPagamento: 'formaPagamento',
   data: 'data'
 };
