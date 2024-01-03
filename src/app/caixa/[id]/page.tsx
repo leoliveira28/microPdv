@@ -1,4 +1,5 @@
 "use client";
+import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -96,6 +97,8 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
     window.location.replace("/caixa")
   }
   return (
+    <div className="flex p-5">
+    <Navbar />
     <div className="container mx-auto p-5">
       <div className="flex flex-col gap-4 bg-slate-100 p-5 rounded-md">
         <h1 className="text-xl font-bold text-gray-800">
@@ -177,6 +180,8 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
         </div>
       )}
     </div>
+    </div>
+
   );
 };
 

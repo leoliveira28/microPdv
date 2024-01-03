@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic"
 import Link from "next/link";
 import { PrismaClient } from "../../generated/client";
 import { AdicionarMesa } from "@/components/CriarMesa";
+import { Navbar } from "@/components/Navbar";
 const prisma = new PrismaClient();
 async function getMesa() {
   const mesa = await prisma.mesa.findMany({
@@ -30,6 +31,8 @@ export default async function Home() {
   const mesas = await getMesa();
   const comanda = await getComanda()
   return (
+    <div className="flex p-5">
+      <Navbar />
     <div className="container mx-auto p-5">
       <div className="flex flex-col gap-4 bg-slate-100 p-5 rounded-md">
         <h1 className="text-2xl font-bold text-gray-800">Adicionar Pedidos</h1>
@@ -70,6 +73,7 @@ export default async function Home() {
         <AdicionarMesa />
         <div></div>
       </div>
+    </div>
     </div>
   );
 }

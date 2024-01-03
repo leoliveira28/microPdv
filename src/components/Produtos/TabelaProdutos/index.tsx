@@ -1,22 +1,27 @@
 "use client";
-
-import {
-  MagnifyingGlass,
-  PencilSimple,
-  SpinnerGap,
-  X,
-} from "@phosphor-icons/react";
+import { PencilSimple, SpinnerGap, X } from "@phosphor-icons/react";
 import { useState } from "react";
 
-const CategoryTable = ({ data }) => {
+interface Produto {
+  id: number;
+  nome: string;
+  preco: number;
+  categoria: string;
+}
+export const TabelaProdutos = ({ data, categoria }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [idCategoria, setIdCategoria] = useState({ id: 0, nome: "" });
-  const [novaCategoria, setNovaCategoria] = useState("");
+  const [produtoAtualizado, setProdutoAtualizado] = useState({
+    id: 1,
+    nome: "",
+    preco: "",
+    categoria: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
+
   const openModal = (id) => {
+    setProdutoAtualizado({ ...produtoAtualizado, id: id })
     setIsModalOpen(true);
-    const nomeCategoria = data.find((item) => item.id === id);
-    setIdCategoria(nomeCategoria);
   };
 
   const closeModal = () => {
@@ -25,57 +30,33 @@ const CategoryTable = ({ data }) => {
   const modalClasses = isModalOpen
     ? "fixed inset-0 flex items-center justify-center z-50"
     : "hidden";
-
-  const handleAlterarCategoria = () => {
-    setIsLoading(!isLoading)
-    const dataCategoria = {
-      id: idCategoria.id,
-      nome: novaCategoria,
-    };
+  const handleAlterarProduto = () => {
     setIsLoading(!isLoading);
-    console.log(dataCategoria);
-    const res = fetch("/api/altera-categoria", {
+    console.log(produtoAtualizado)
+    const res = fetch("/api/atualizar-produto", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dataCategoria),
-    }).then((res) => res.ok ? window.location.reload() : null)
+      body: JSON.stringify(produtoAtualizado),
+    }).then((res) => (res.ok ? window.location.reload() : null));
   };
-  const handleApagarCategoria = (id) => {
-    const res = fetch("/api/apaga-categoria", {
+  const handleApagarProduto = (id) => {
+    const res = fetch("/api/apagar-produto", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(id),
-    }).then((res) => res.ok ? window.location.reload() : null)
-  }
+    }).then((res) => (res.ok ? window.location.reload() : null));
+  };
   return (
-    <div className="flex flex-col gap-2">
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div className="p-4 bg-white dark:bg-slate-500 flex items-center">
-          <label htmlFor="table-search" className="sr-only">
-            Pesquisar
-          </label>
-          <div className="relative mt-1">
-            <div className="absolute inset-y-1 rtl:inset-r-0 -start-1 ps-3 pointer-events-none">
-              <MagnifyingGlass className="text-slate-50" size={24} />
-            </div>
-            <input
-              placeholder="Pesquisar"
-              type="text"
-              id="table-search"
-              className="block pt-2 ps-10 text-base text-gray-100 border border-gray-100 rounded-lg w-80 bg-gray-500"
-            />
-          </div>
-        </div>
-      </div>
+    <div>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 shadow-md">
         <thead className="text-sm text-gray-900 uppercase bg-slate-100">
           <tr>
             <th scope="col" className="px-6 py-3">
-              Nome da Categoria
+              Nome do Produto
             </th>
             <th scope="col" className="px-6 py-3">
               Editar
@@ -105,31 +86,45 @@ const CategoryTable = ({ data }) => {
                 />
               </td>
               <td id={item.id} className="px-6 py-4">
-                <X onClick={() => handleApagarCategoria(item.id)} className="text-gray-800 hover:cursor-pointer" size={24} />
+                <X
+                  onClick={() => handleApagarProduto(item.id)}
+                  className="text-gray-800 hover:cursor-pointer"
+                  size={24}
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {
-        //INICIO MODAL
-      }
       {isModalOpen && (
         <div className={modalClasses}>
           <div className="fixed inset-0 bg-black opacity-50"></div>
           <div className="bg-white p-4 rounded shadow-lg z-10">
             <div className="flex justify-end"></div>
             <div className="flex flex-col gap-3">
-              <h2 className="font-medium ">Alterar categoria:</h2>
+              <h2 className="font-medium ">Alterar Produto:</h2>
+              <label htmlFor="nome">Nome do produto</label>
+              <input name="nome" onChange={(e) => setProdutoAtualizado({ ...produtoAtualizado, nome: e.target.value })} className="p-2 bg-slate-300 rounded-md" />
+              <label htmlFor="preço">Preço</label>
               <input
+              onChange={(e) => setProdutoAtualizado({ ...produtoAtualizado, preco: e.target.value })}
+                type="number"
+                name="preço"
                 className="p-2 bg-slate-300 rounded-md"
-                onChange={(e) => setNovaCategoria(e.target.value)}
               />
+              <label htmlFor="categoria">Categoria</label>
+              <select onChange={(e) => setProdutoAtualizado({ ...produtoAtualizado, categoria: e.target.value })} className="bg-slate-300 p-2 rounded-md" name="categoria">
+                {categoria.map((item, i) => (
+                  <option key={i} className="p-2 bg-slate-300" value={item.nome}>
+                    {item.nome}
+                  </option>
+                ))}
+              </select>
               <div className="flex flex-col gap-4">
                 <div className="flex gap-3">
                   {!isLoading ? (
                     <button
-                      onClick={handleAlterarCategoria}
+                      onClick={handleAlterarProduto}
                       className={`p-2 bg-green-500 hover:brightness-95 rounded-md`}
                     >
                       Alterar
@@ -140,7 +135,7 @@ const CategoryTable = ({ data }) => {
                       type="button"
                       className="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 bg-slate-300 rounded-lg border border-gray-200 hover:bg-gray-400 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 inline-flex items-center"
                     >
-                      <SpinnerGap 
+                      <SpinnerGap
                         className="inline w-4 h-4 me-3 text-gray-200 animate-spin dark:text-gray-600"
                         size={32}
                       />
@@ -164,5 +159,3 @@ const CategoryTable = ({ data }) => {
     </div>
   );
 };
-
-export default CategoryTable;
