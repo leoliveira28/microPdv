@@ -19,7 +19,6 @@ export async function POST(request) {
             quantidade: pedido.quantidade,
           })),
         },
-        
       },
 
     });

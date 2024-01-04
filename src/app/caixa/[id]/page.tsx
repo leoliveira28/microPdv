@@ -33,7 +33,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [valorParcial, setValorParcial] = useState("");
   const [valorPago, setValorPago] = useState<ValorPago[]>();
-  const [valorRecebido, setValorRecebido] = useState()
+  const [valorRecebido, setValorRecebido] = useState();
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -68,11 +68,11 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify( mesaId ),
+        body: JSON.stringify(mesaId),
       });
       const data = await response.json();
-      setValorPago(data.data)
-      console.log()
+      setValorPago(data.data);
+      console.log();
       // console.log(valorPago)
     };
     getParcial();
@@ -105,6 +105,13 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
     });
     window.location.replace("/caixa");
   };
+  const soma = valorPago.map((valor) =>
+    valor.valorParcial
+      .map((item) => item.valor)
+      .reduce((acumulador, valorAtual) => {
+        return acumulador + valorAtual;
+      }, 0)
+  );
 
   const fecharMesaParcial = async (id) => {
     const pedidoParcial = {
@@ -150,9 +157,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
               ))}
           </ul>
           <strong>Total da mesa: R$ {totalConta}</strong>
-          {valorPago?.map(item => item.valorParcial[0]?.valor) &&
-          <strong>Valor Pago: R$ {valorPago.map(item => item.valorParcial[0]?.valor)}</strong>
-         }
+          {valorPago && <strong>Valor Pago: R$ {soma}</strong>}
           <div className="flex gap-4">
             <button
               onClick={openModal}
