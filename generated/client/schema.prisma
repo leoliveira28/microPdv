@@ -30,6 +30,8 @@ model Mesa {
   numero  Int
   status  String
   pedidos Pedido[]
+  valorParcial      ValorParcial[]
+
 }
 
 model Pedido {
@@ -44,11 +46,18 @@ model Pedido {
   produto           Produto          @relation(fields: [produtoId], references: [id])
 }
 
+model ValorParcial {
+  id                Int              @id @default(autoincrement())
+  valor             Float
+  updatedAt         DateTime
+  pedidoId          Int
+  mesa            Mesa @relation(fields: [pedidoId], references: [id])
+}
+
 model PedidoEncerrado {
   id             Int      @id @default(autoincrement())
   mesaId         Int
   valor          Float?
-  valorParcial   Float?
   formaPagamento String
   data           DateTime
   pedidos        Pedido[]

@@ -15,14 +15,14 @@ import { useState } from "react";
 export const Navbar = () => {
   const [trigger, setTrigger] = useState(false);
   return (
-    <div>
+    <div className="mx-14">
         <Link href={""} onClick={() => setTrigger(!trigger)}>
         <strong>Abrir Menu</strong>
         <CaretDoubleRight size={32} />
         </Link>
       <aside
         className={`bg-gray-400 p-5 h-screen rounded-md shadow-md fixed top-0 bottom-0 w-[200px] ${
-          !trigger ? "-left-52" : "left-0"
+          !trigger ? "-left-60" : "left-0"
         } transition-all duration-300 `}
       >
         <nav>

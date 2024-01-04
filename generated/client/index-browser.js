@@ -135,11 +135,17 @@ exports.Prisma.PedidoScalarFieldEnum = {
   pedidoEncerradoId: 'pedidoEncerradoId'
 };
 
+exports.Prisma.ValorParcialScalarFieldEnum = {
+  id: 'id',
+  valor: 'valor',
+  updatedAt: 'updatedAt',
+  pedidoId: 'pedidoId'
+};
+
 exports.Prisma.PedidoEncerradoScalarFieldEnum = {
   id: 'id',
   mesaId: 'mesaId',
   valor: 'valor',
-  valorParcial: 'valorParcial',
   formaPagamento: 'formaPagamento',
   data: 'data'
 };
@@ -165,6 +171,7 @@ exports.Prisma.ModelName = {
   Categoria: 'Categoria',
   Mesa: 'Mesa',
   Pedido: 'Pedido',
+  ValorParcial: 'ValorParcial',
   PedidoEncerrado: 'PedidoEncerrado'
 };
 

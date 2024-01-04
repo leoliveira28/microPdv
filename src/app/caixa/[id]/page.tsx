@@ -16,12 +16,24 @@ interface Pedido {
   quantidade: number;
   produto: Produto;
 }
+interface ValorPago {
+  valorParcial: ValorParcial[];
+}
+
+interface ValorParcial {
+  id: number;
+  valor: number;
+  updatedAt: string;
+  pedidoId: number;
+}
 const ConsumoMesa = ({ params }: { params: { id: string } }) => {
   const [totalConta, setTotalConta] = useState(0.0);
   const [pedido, setPedido] = useState<Pedido[]>();
   const [formaDePagamento, setFormaDePagamento] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [valorParcial, setValorParcial] = useState('')
+  const [valorParcial, setValorParcial] = useState("");
+  const [valorPago, setValorPago] = useState<ValorPago[]>();
+  const [valorRecebido, setValorRecebido] = useState()
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -49,13 +61,22 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
         console.error("Erro ao obter pedido:", error);
       }
     };
-    if (pedido && pedido.length > 0) {
-      const totalConta = pedido.reduce((total, item) => {
-        return total + item.produto.preco * item.quantidade;
-      }, 0);
-    }
+    const getParcial = async () => {
+      const mesaId = params.id;
+      const response = await fetch("/api/verifica-parcial", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify( mesaId ),
+      });
+      const data = await response.json();
+      setValorPago(data.data)
+      console.log()
+      // console.log(valorPago)
+    };
+    getParcial();
     getPedido();
-    // Calculate totalConta whenever pedido changes
     if (pedido && pedido.length > 0) {
       const newTotalConta = pedido.reduce((total, item) => {
         return total + item.produto.preco * item.quantidade;
@@ -63,6 +84,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
       setTotalConta(newTotalConta);
     }
   }, [pedido]);
+
   const fecharMesa = async () => {
     const mesaId = parseInt(params.id);
     const pedidoEncerrado = {
@@ -72,6 +94,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
       data: new Date(),
       pedidos: pedido,
     };
+
     closeModal();
     const result = await fetch("/api/fechar-mesa", {
       method: "POST",
@@ -85,18 +108,18 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
 
   const fecharMesaParcial = async (id) => {
     const pedidoParcial = {
-      mesaId: parseInt(params.id),
+      mesaId: parseInt(id),
       valorParcial: parseFloat(valorParcial),
       formaPagamento: "Parcial",
-      data: new Date()
-    }
+      data: new Date(),
+    };
     const result = await fetch("/api/pedido-parcial", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(pedidoParcial),
-    });
+    }).then((res) => (res.ok ? window.location.reload() : null));
   };
   const handleEexcluirComanda = async () => {
     const mesaId = parseInt(params.id);
@@ -127,6 +150,9 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
               ))}
           </ul>
           <strong>Total da mesa: R$ {totalConta}</strong>
+          {valorPago?.map(item => item.valorParcial[0]?.valor) &&
+          <strong>Valor Pago: R$ {valorPago.map(item => item.valorParcial[0]?.valor)}</strong>
+         }
           <div className="flex gap-4">
             <button
               onClick={openModal}
@@ -173,17 +199,22 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
                   </select>
                   <strong>Total da mesa: R$ {totalConta}</strong>
                   {formaDePagamento === "parcial" ? (
-                      <div className="flex flex-col gap-2">
-                        <label htmlFor="parcial">Valor Parcial:</label>
-                        <input onChange={(e) => setValorParcial(e.target.value)}  name="parcial" type="number" className="p-2 bg-slate-200 rounded-md" />
-                        <button
-                          className="p-2 bg-blue-500 hover:brightness-95 rounded-md"
-                          onClick={() => fecharMesaParcial(params.id)}
-                        >
-                          Parcial
-                        </button>
-                      </div>
-                    ) : null}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="parcial">Valor Parcial:</label>
+                      <input
+                        onChange={(e) => setValorParcial(e.target.value)}
+                        name="parcial"
+                        type="number"
+                        className="p-2 bg-slate-200 rounded-md"
+                      />
+                      <button
+                        className="p-2 bg-blue-500 hover:brightness-95 rounded-md"
+                        onClick={() => fecharMesaParcial(params.id)}
+                      >
+                        Parcial
+                      </button>
+                    </div>
+                  ) : null}
 
                   <div className="flex gap-3">
                     <button

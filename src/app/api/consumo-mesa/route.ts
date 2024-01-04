@@ -10,6 +10,7 @@ export async function POST(request) {
             },
             include: {
                 produto: true,
+                
             },
         });
      return NextResponse.json({ success: true, data: result });

@@ -36,18 +36,6 @@ const Caixa = async () => {
         {/* <MesasCaixa data={comanda} /> */}
         <MesasCaixa data={mesa} />
         <div className="flex flex-col gap-4">
-          <Link href={"/caixa"}>
-          <button
-            className="p-1 bg-green-500 text-md w-1/3 rounded-md hover:brightness-95 transition-all duration-300"
-          >
-            Atualizar
-          </button>
-          </Link>
-          <Link href={"/caixa/fechamento"}>
-          <button className="p-1 bg-yellow-500 text-md w-1/3 rounded-md hover:brightness-95 transition-all duration-300">
-            Resumo Caixa
-          </button>
-          </Link>
         </div>
       </div>
     </div>

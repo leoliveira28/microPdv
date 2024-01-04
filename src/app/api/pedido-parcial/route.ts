@@ -4,14 +4,13 @@ const prisma = new PrismaClient()
 export async function POST(request) {
   try {
     const pedidoParcial = await request.json();
-    const result = await prisma.pedidoEncerrado.create({
+    const result = await prisma.valorParcial.create({
       data: {
-        mesaId: pedidoParcial.mesaId,
-        valorParcial: pedidoParcial.valorParcial,
-        formaPagamento: pedidoParcial.formaPagamento,
-        data: new Date(),
+        pedidoId: pedidoParcial.mesaId,
+        valor: pedidoParcial.valorParcial,
+        updatedAt: new Date(),
       },
-
+      
     });
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
