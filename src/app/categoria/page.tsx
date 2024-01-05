@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { CadastroCategoria } from "@/components/Produtos/CadastroCategoria";
 import { PrismaClient } from "../../../generated/client";
 import CategoryTable from "@/components/Produtos/TabelaCategoria";
