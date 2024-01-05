@@ -62,7 +62,7 @@ const PedidoComponent = ({ produtos, mesaId }) => {
     (produto) => produto.categoria === "CERVEJA LATA"
   );
   const espeto = produtos.filter((produto) => produto.categoria === "ESPETO");
-
+  console.log(produtos)
   const dadosPorCategoria: { [key: string]: any[] } = {};
   produtos.forEach((produto) => {
     if (!dadosPorCategoria[produto.categoria]) {
