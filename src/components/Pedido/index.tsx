@@ -78,8 +78,9 @@ const PedidoComponent = ({ produtos, mesaId }) => {
       {Object.entries(dadosPorCategoria).map(([categoria, produtos]) => (
         <div className="flex flex-col gap-4" key={categoria}>
           <h2 className="text-xl font-bold">{categoria}</h2>
-          {produtos.map((produto) => (
+          {produtos.map((produto, i) => (
            <div
+           key={i}
             className="flex hover:bg-slate-300 transition-all duration-500  justify-between"
           >
             <li className="font-medium" key={produto.id}>{produto.nome} - QTDE:</li>
