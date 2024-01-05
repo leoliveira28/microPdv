@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Produto = $Result.DefaultSelection<Prisma.$ProdutoPayload>
 /**
+ * Model Categoria
+ * 
+ */
+export type Categoria = $Result.DefaultSelection<Prisma.$CategoriaPayload>
+/**
  * Model Mesa
  * 
  */
@@ -28,6 +33,11 @@ export type Mesa = $Result.DefaultSelection<Prisma.$MesaPayload>
  * 
  */
 export type Pedido = $Result.DefaultSelection<Prisma.$PedidoPayload>
+/**
+ * Model ValorParcial
+ * 
+ */
+export type ValorParcial = $Result.DefaultSelection<Prisma.$ValorParcialPayload>
 /**
  * Model PedidoEncerrado
  * 
@@ -167,6 +177,16 @@ export class PrismaClient<
   get produto(): Prisma.ProdutoDelegate<ExtArgs>;
 
   /**
+   * `prisma.categoria`: Exposes CRUD operations for the **Categoria** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categorias
+    * const categorias = await prisma.categoria.findMany()
+    * ```
+    */
+  get categoria(): Prisma.CategoriaDelegate<ExtArgs>;
+
+  /**
    * `prisma.mesa`: Exposes CRUD operations for the **Mesa** model.
     * Example usage:
     * ```ts
@@ -185,6 +205,16 @@ export class PrismaClient<
     * ```
     */
   get pedido(): Prisma.PedidoDelegate<ExtArgs>;
+
+  /**
+   * `prisma.valorParcial`: Exposes CRUD operations for the **ValorParcial** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ValorParcials
+    * const valorParcials = await prisma.valorParcial.findMany()
+    * ```
+    */
+  get valorParcial(): Prisma.ValorParcialDelegate<ExtArgs>;
 
   /**
    * `prisma.pedidoEncerrado`: Exposes CRUD operations for the **PedidoEncerrado** model.
@@ -666,8 +696,10 @@ export namespace Prisma {
 
   export const ModelName: {
     Produto: 'Produto',
+    Categoria: 'Categoria',
     Mesa: 'Mesa',
     Pedido: 'Pedido',
+    ValorParcial: 'ValorParcial',
     PedidoEncerrado: 'PedidoEncerrado'
   };
 
@@ -685,7 +717,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'produto' | 'mesa' | 'pedido' | 'pedidoEncerrado'
+      modelProps: 'produto' | 'categoria' | 'mesa' | 'pedido' | 'valorParcial' | 'pedidoEncerrado'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -752,6 +784,72 @@ export namespace Prisma {
           count: {
             args: Prisma.ProdutoCountArgs<ExtArgs>,
             result: $Utils.Optional<ProdutoCountAggregateOutputType> | number
+          }
+        }
+      }
+      Categoria: {
+        payload: Prisma.$CategoriaPayload<ExtArgs>
+        fields: Prisma.CategoriaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CategoriaFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CategoriaFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          findFirst: {
+            args: Prisma.CategoriaFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CategoriaFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          findMany: {
+            args: Prisma.CategoriaFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>[]
+          }
+          create: {
+            args: Prisma.CategoriaCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          createMany: {
+            args: Prisma.CategoriaCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.CategoriaDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          update: {
+            args: Prisma.CategoriaUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          deleteMany: {
+            args: Prisma.CategoriaDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CategoriaUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.CategoriaUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CategoriaPayload>
+          }
+          aggregate: {
+            args: Prisma.CategoriaAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateCategoria>
+          }
+          groupBy: {
+            args: Prisma.CategoriaGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CategoriaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CategoriaCountArgs<ExtArgs>,
+            result: $Utils.Optional<CategoriaCountAggregateOutputType> | number
           }
         }
       }
@@ -884,6 +982,72 @@ export namespace Prisma {
           count: {
             args: Prisma.PedidoCountArgs<ExtArgs>,
             result: $Utils.Optional<PedidoCountAggregateOutputType> | number
+          }
+        }
+      }
+      ValorParcial: {
+        payload: Prisma.$ValorParcialPayload<ExtArgs>
+        fields: Prisma.ValorParcialFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ValorParcialFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ValorParcialFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload>
+          }
+          findFirst: {
+            args: Prisma.ValorParcialFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ValorParcialFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload>
+          }
+          findMany: {
+            args: Prisma.ValorParcialFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload>[]
+          }
+          create: {
+            args: Prisma.ValorParcialCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload>
+          }
+          createMany: {
+            args: Prisma.ValorParcialCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ValorParcialDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload>
+          }
+          update: {
+            args: Prisma.ValorParcialUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload>
+          }
+          deleteMany: {
+            args: Prisma.ValorParcialDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ValorParcialUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ValorParcialUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ValorParcialPayload>
+          }
+          aggregate: {
+            args: Prisma.ValorParcialAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateValorParcial>
+          }
+          groupBy: {
+            args: Prisma.ValorParcialGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ValorParcialGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ValorParcialCountArgs<ExtArgs>,
+            result: $Utils.Optional<ValorParcialCountAggregateOutputType> | number
           }
         }
       }
@@ -1132,15 +1296,51 @@ export namespace Prisma {
 
 
   /**
+   * Count Type CategoriaCountOutputType
+   */
+
+  export type CategoriaCountOutputType = {
+    produtos: number
+  }
+
+  export type CategoriaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produtos?: boolean | CategoriaCountOutputTypeCountProdutosArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * CategoriaCountOutputType without action
+   */
+  export type CategoriaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CategoriaCountOutputType
+     */
+    select?: CategoriaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * CategoriaCountOutputType without action
+   */
+  export type CategoriaCountOutputTypeCountProdutosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProdutoWhereInput
+  }
+
+
+
+  /**
    * Count Type MesaCountOutputType
    */
 
   export type MesaCountOutputType = {
     pedidos: number
+    valorParcial: number
   }
 
   export type MesaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pedidos?: boolean | MesaCountOutputTypeCountPedidosArgs
+    valorParcial?: boolean | MesaCountOutputTypeCountValorParcialArgs
   }
 
   // Custom InputTypes
@@ -1161,6 +1361,14 @@ export namespace Prisma {
    */
   export type MesaCountOutputTypeCountPedidosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PedidoWhereInput
+  }
+
+
+  /**
+   * MesaCountOutputType without action
+   */
+  export type MesaCountOutputTypeCountValorParcialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ValorParcialWhereInput
   }
 
 
@@ -1218,32 +1426,34 @@ export namespace Prisma {
   export type ProdutoAvgAggregateOutputType = {
     id: number | null
     preco: number | null
+    categoriaId: number | null
   }
 
   export type ProdutoSumAggregateOutputType = {
     id: number | null
     preco: number | null
+    categoriaId: number | null
   }
 
   export type ProdutoMinAggregateOutputType = {
     id: number | null
     nome: string | null
     preco: number | null
-    categoria: string | null
+    categoriaId: number | null
   }
 
   export type ProdutoMaxAggregateOutputType = {
     id: number | null
     nome: string | null
     preco: number | null
-    categoria: string | null
+    categoriaId: number | null
   }
 
   export type ProdutoCountAggregateOutputType = {
     id: number
     nome: number
     preco: number
-    categoria: number
+    categoriaId: number
     _all: number
   }
 
@@ -1251,32 +1461,34 @@ export namespace Prisma {
   export type ProdutoAvgAggregateInputType = {
     id?: true
     preco?: true
+    categoriaId?: true
   }
 
   export type ProdutoSumAggregateInputType = {
     id?: true
     preco?: true
+    categoriaId?: true
   }
 
   export type ProdutoMinAggregateInputType = {
     id?: true
     nome?: true
     preco?: true
-    categoria?: true
+    categoriaId?: true
   }
 
   export type ProdutoMaxAggregateInputType = {
     id?: true
     nome?: true
     preco?: true
-    categoria?: true
+    categoriaId?: true
   }
 
   export type ProdutoCountAggregateInputType = {
     id?: true
     nome?: true
     preco?: true
-    categoria?: true
+    categoriaId?: true
     _all?: true
   }
 
@@ -1370,7 +1582,7 @@ export namespace Prisma {
     id: number
     nome: string
     preco: number
-    categoria: string
+    categoriaId: number
     _count: ProdutoCountAggregateOutputType | null
     _avg: ProdutoAvgAggregateOutputType | null
     _sum: ProdutoSumAggregateOutputType | null
@@ -1396,7 +1608,8 @@ export namespace Prisma {
     id?: boolean
     nome?: boolean
     preco?: boolean
-    categoria?: boolean
+    categoriaId?: boolean
+    categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
     pedidos?: boolean | Produto$pedidosArgs<ExtArgs>
     _count?: boolean | ProdutoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["produto"]>
@@ -1405,10 +1618,11 @@ export namespace Prisma {
     id?: boolean
     nome?: boolean
     preco?: boolean
-    categoria?: boolean
+    categoriaId?: boolean
   }
 
   export type ProdutoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    categoria?: boolean | CategoriaDefaultArgs<ExtArgs>
     pedidos?: boolean | Produto$pedidosArgs<ExtArgs>
     _count?: boolean | ProdutoCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -1417,13 +1631,14 @@ export namespace Prisma {
   export type $ProdutoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Produto"
     objects: {
+      categoria: Prisma.$CategoriaPayload<ExtArgs>
       pedidos: Prisma.$PedidoPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       nome: string
       preco: number
-      categoria: string
+      categoriaId: number
     }, ExtArgs["result"]["produto"]>
     composites: {}
   }
@@ -1789,6 +2004,8 @@ export namespace Prisma {
   export interface Prisma__ProdutoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    categoria<T extends CategoriaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoriaDefaultArgs<ExtArgs>>): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
     pedidos<T extends Produto$pedidosArgs<ExtArgs> = {}>(args?: Subset<T, Produto$pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PedidoPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
@@ -1822,7 +2039,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Produto", 'Int'>
     readonly nome: FieldRef<"Produto", 'String'>
     readonly preco: FieldRef<"Produto", 'Float'>
-    readonly categoria: FieldRef<"Produto", 'String'>
+    readonly categoriaId: FieldRef<"Produto", 'Int'>
   }
     
 
@@ -2172,6 +2389,948 @@ export namespace Prisma {
 
 
   /**
+   * Model Categoria
+   */
+
+  export type AggregateCategoria = {
+    _count: CategoriaCountAggregateOutputType | null
+    _avg: CategoriaAvgAggregateOutputType | null
+    _sum: CategoriaSumAggregateOutputType | null
+    _min: CategoriaMinAggregateOutputType | null
+    _max: CategoriaMaxAggregateOutputType | null
+  }
+
+  export type CategoriaAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CategoriaSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CategoriaMinAggregateOutputType = {
+    id: number | null
+    nome: string | null
+  }
+
+  export type CategoriaMaxAggregateOutputType = {
+    id: number | null
+    nome: string | null
+  }
+
+  export type CategoriaCountAggregateOutputType = {
+    id: number
+    nome: number
+    _all: number
+  }
+
+
+  export type CategoriaAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type CategoriaSumAggregateInputType = {
+    id?: true
+  }
+
+  export type CategoriaMinAggregateInputType = {
+    id?: true
+    nome?: true
+  }
+
+  export type CategoriaMaxAggregateInputType = {
+    id?: true
+    nome?: true
+  }
+
+  export type CategoriaCountAggregateInputType = {
+    id?: true
+    nome?: true
+    _all?: true
+  }
+
+  export type CategoriaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categoria to aggregate.
+     */
+    where?: CategoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categorias to fetch.
+     */
+    orderBy?: CategoriaOrderByWithRelationInput | CategoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CategoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Categorias
+    **/
+    _count?: true | CategoriaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CategoriaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CategoriaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CategoriaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CategoriaMaxAggregateInputType
+  }
+
+  export type GetCategoriaAggregateType<T extends CategoriaAggregateArgs> = {
+        [P in keyof T & keyof AggregateCategoria]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCategoria[P]>
+      : GetScalarType<T[P], AggregateCategoria[P]>
+  }
+
+
+
+
+  export type CategoriaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoriaWhereInput
+    orderBy?: CategoriaOrderByWithAggregationInput | CategoriaOrderByWithAggregationInput[]
+    by: CategoriaScalarFieldEnum[] | CategoriaScalarFieldEnum
+    having?: CategoriaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CategoriaCountAggregateInputType | true
+    _avg?: CategoriaAvgAggregateInputType
+    _sum?: CategoriaSumAggregateInputType
+    _min?: CategoriaMinAggregateInputType
+    _max?: CategoriaMaxAggregateInputType
+  }
+
+  export type CategoriaGroupByOutputType = {
+    id: number
+    nome: string
+    _count: CategoriaCountAggregateOutputType | null
+    _avg: CategoriaAvgAggregateOutputType | null
+    _sum: CategoriaSumAggregateOutputType | null
+    _min: CategoriaMinAggregateOutputType | null
+    _max: CategoriaMaxAggregateOutputType | null
+  }
+
+  type GetCategoriaGroupByPayload<T extends CategoriaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CategoriaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CategoriaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CategoriaGroupByOutputType[P]>
+            : GetScalarType<T[P], CategoriaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CategoriaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    produtos?: boolean | Categoria$produtosArgs<ExtArgs>
+    _count?: boolean | CategoriaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["categoria"]>
+
+  export type CategoriaSelectScalar = {
+    id?: boolean
+    nome?: boolean
+  }
+
+  export type CategoriaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produtos?: boolean | Categoria$produtosArgs<ExtArgs>
+    _count?: boolean | CategoriaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $CategoriaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Categoria"
+    objects: {
+      produtos: Prisma.$ProdutoPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nome: string
+    }, ExtArgs["result"]["categoria"]>
+    composites: {}
+  }
+
+
+  type CategoriaGetPayload<S extends boolean | null | undefined | CategoriaDefaultArgs> = $Result.GetResult<Prisma.$CategoriaPayload, S>
+
+  type CategoriaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CategoriaFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: CategoriaCountAggregateInputType | true
+    }
+
+  export interface CategoriaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Categoria'], meta: { name: 'Categoria' } }
+    /**
+     * Find zero or one Categoria that matches the filter.
+     * @param {CategoriaFindUniqueArgs} args - Arguments to find a Categoria
+     * @example
+     * // Get one Categoria
+     * const categoria = await prisma.categoria.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends CategoriaFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaFindUniqueArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Categoria that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {CategoriaFindUniqueOrThrowArgs} args - Arguments to find a Categoria
+     * @example
+     * // Get one Categoria
+     * const categoria = await prisma.categoria.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends CategoriaFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Categoria that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaFindFirstArgs} args - Arguments to find a Categoria
+     * @example
+     * // Get one Categoria
+     * const categoria = await prisma.categoria.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends CategoriaFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaFindFirstArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Categoria that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaFindFirstOrThrowArgs} args - Arguments to find a Categoria
+     * @example
+     * // Get one Categoria
+     * const categoria = await prisma.categoria.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends CategoriaFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Categorias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Categorias
+     * const categorias = await prisma.categoria.findMany()
+     * 
+     * // Get first 10 Categorias
+     * const categorias = await prisma.categoria.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const categoriaWithIdOnly = await prisma.categoria.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends CategoriaFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Categoria.
+     * @param {CategoriaCreateArgs} args - Arguments to create a Categoria.
+     * @example
+     * // Create one Categoria
+     * const Categoria = await prisma.categoria.create({
+     *   data: {
+     *     // ... data to create a Categoria
+     *   }
+     * })
+     * 
+    **/
+    create<T extends CategoriaCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaCreateArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Categorias.
+     *     @param {CategoriaCreateManyArgs} args - Arguments to create many Categorias.
+     *     @example
+     *     // Create many Categorias
+     *     const categoria = await prisma.categoria.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends CategoriaCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Categoria.
+     * @param {CategoriaDeleteArgs} args - Arguments to delete one Categoria.
+     * @example
+     * // Delete one Categoria
+     * const Categoria = await prisma.categoria.delete({
+     *   where: {
+     *     // ... filter to delete one Categoria
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends CategoriaDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaDeleteArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Categoria.
+     * @param {CategoriaUpdateArgs} args - Arguments to update one Categoria.
+     * @example
+     * // Update one Categoria
+     * const categoria = await prisma.categoria.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends CategoriaUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaUpdateArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Categorias.
+     * @param {CategoriaDeleteManyArgs} args - Arguments to filter Categorias to delete.
+     * @example
+     * // Delete a few Categorias
+     * const { count } = await prisma.categoria.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends CategoriaDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CategoriaDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categorias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Categorias
+     * const categoria = await prisma.categoria.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends CategoriaUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Categoria.
+     * @param {CategoriaUpsertArgs} args - Arguments to update or create a Categoria.
+     * @example
+     * // Update or create a Categoria
+     * const categoria = await prisma.categoria.upsert({
+     *   create: {
+     *     // ... data to create a Categoria
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Categoria we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends CategoriaUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, CategoriaUpsertArgs<ExtArgs>>
+    ): Prisma__CategoriaClient<$Result.GetResult<Prisma.$CategoriaPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Categorias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaCountArgs} args - Arguments to filter Categorias to count.
+     * @example
+     * // Count the number of Categorias
+     * const count = await prisma.categoria.count({
+     *   where: {
+     *     // ... the filter for the Categorias we want to count
+     *   }
+     * })
+    **/
+    count<T extends CategoriaCountArgs>(
+      args?: Subset<T, CategoriaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CategoriaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Categoria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CategoriaAggregateArgs>(args: Subset<T, CategoriaAggregateArgs>): Prisma.PrismaPromise<GetCategoriaAggregateType<T>>
+
+    /**
+     * Group by Categoria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoriaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CategoriaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CategoriaGroupByArgs['orderBy'] }
+        : { orderBy?: CategoriaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CategoriaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoriaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Categoria model
+   */
+  readonly fields: CategoriaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Categoria.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CategoriaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    produtos<T extends Categoria$produtosArgs<ExtArgs> = {}>(args?: Subset<T, Categoria$produtosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProdutoPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Categoria model
+   */ 
+  interface CategoriaFieldRefs {
+    readonly id: FieldRef<"Categoria", 'Int'>
+    readonly nome: FieldRef<"Categoria", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Categoria findUnique
+   */
+  export type CategoriaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Categoria to fetch.
+     */
+    where: CategoriaWhereUniqueInput
+  }
+
+
+  /**
+   * Categoria findUniqueOrThrow
+   */
+  export type CategoriaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Categoria to fetch.
+     */
+    where: CategoriaWhereUniqueInput
+  }
+
+
+  /**
+   * Categoria findFirst
+   */
+  export type CategoriaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Categoria to fetch.
+     */
+    where?: CategoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categorias to fetch.
+     */
+    orderBy?: CategoriaOrderByWithRelationInput | CategoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categorias.
+     */
+    cursor?: CategoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categorias.
+     */
+    distinct?: CategoriaScalarFieldEnum | CategoriaScalarFieldEnum[]
+  }
+
+
+  /**
+   * Categoria findFirstOrThrow
+   */
+  export type CategoriaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Categoria to fetch.
+     */
+    where?: CategoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categorias to fetch.
+     */
+    orderBy?: CategoriaOrderByWithRelationInput | CategoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categorias.
+     */
+    cursor?: CategoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categorias.
+     */
+    distinct?: CategoriaScalarFieldEnum | CategoriaScalarFieldEnum[]
+  }
+
+
+  /**
+   * Categoria findMany
+   */
+  export type CategoriaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Categorias to fetch.
+     */
+    where?: CategoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categorias to fetch.
+     */
+    orderBy?: CategoriaOrderByWithRelationInput | CategoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Categorias.
+     */
+    cursor?: CategoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categorias.
+     */
+    skip?: number
+    distinct?: CategoriaScalarFieldEnum | CategoriaScalarFieldEnum[]
+  }
+
+
+  /**
+   * Categoria create
+   */
+  export type CategoriaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Categoria.
+     */
+    data: XOR<CategoriaCreateInput, CategoriaUncheckedCreateInput>
+  }
+
+
+  /**
+   * Categoria createMany
+   */
+  export type CategoriaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Categorias.
+     */
+    data: CategoriaCreateManyInput | CategoriaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Categoria update
+   */
+  export type CategoriaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Categoria.
+     */
+    data: XOR<CategoriaUpdateInput, CategoriaUncheckedUpdateInput>
+    /**
+     * Choose, which Categoria to update.
+     */
+    where: CategoriaWhereUniqueInput
+  }
+
+
+  /**
+   * Categoria updateMany
+   */
+  export type CategoriaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Categorias.
+     */
+    data: XOR<CategoriaUpdateManyMutationInput, CategoriaUncheckedUpdateManyInput>
+    /**
+     * Filter which Categorias to update
+     */
+    where?: CategoriaWhereInput
+  }
+
+
+  /**
+   * Categoria upsert
+   */
+  export type CategoriaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Categoria to update in case it exists.
+     */
+    where: CategoriaWhereUniqueInput
+    /**
+     * In case the Categoria found by the `where` argument doesn't exist, create a new Categoria with this data.
+     */
+    create: XOR<CategoriaCreateInput, CategoriaUncheckedCreateInput>
+    /**
+     * In case the Categoria was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CategoriaUpdateInput, CategoriaUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Categoria delete
+   */
+  export type CategoriaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+    /**
+     * Filter which Categoria to delete.
+     */
+    where: CategoriaWhereUniqueInput
+  }
+
+
+  /**
+   * Categoria deleteMany
+   */
+  export type CategoriaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categorias to delete
+     */
+    where?: CategoriaWhereInput
+  }
+
+
+  /**
+   * Categoria.produtos
+   */
+  export type Categoria$produtosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produto
+     */
+    select?: ProdutoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProdutoInclude<ExtArgs> | null
+    where?: ProdutoWhereInput
+    orderBy?: ProdutoOrderByWithRelationInput | ProdutoOrderByWithRelationInput[]
+    cursor?: ProdutoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProdutoScalarFieldEnum | ProdutoScalarFieldEnum[]
+  }
+
+
+  /**
+   * Categoria without action
+   */
+  export type CategoriaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Categoria
+     */
+    select?: CategoriaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CategoriaInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Model Mesa
    */
 
@@ -2366,6 +3525,7 @@ export namespace Prisma {
     numero?: boolean
     status?: boolean
     pedidos?: boolean | Mesa$pedidosArgs<ExtArgs>
+    valorParcial?: boolean | Mesa$valorParcialArgs<ExtArgs>
     _count?: boolean | MesaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mesa"]>
 
@@ -2378,6 +3538,7 @@ export namespace Prisma {
 
   export type MesaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pedidos?: boolean | Mesa$pedidosArgs<ExtArgs>
+    valorParcial?: boolean | Mesa$valorParcialArgs<ExtArgs>
     _count?: boolean | MesaCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2386,6 +3547,7 @@ export namespace Prisma {
     name: "Mesa"
     objects: {
       pedidos: Prisma.$PedidoPayload<ExtArgs>[]
+      valorParcial: Prisma.$ValorParcialPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2759,6 +3921,8 @@ export namespace Prisma {
 
     pedidos<T extends Mesa$pedidosArgs<ExtArgs> = {}>(args?: Subset<T, Mesa$pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PedidoPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    valorParcial<T extends Mesa$valorParcialArgs<ExtArgs> = {}>(args?: Subset<T, Mesa$valorParcialArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3120,6 +4284,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PedidoScalarFieldEnum | PedidoScalarFieldEnum[]
+  }
+
+
+  /**
+   * Mesa.valorParcial
+   */
+  export type Mesa$valorParcialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    where?: ValorParcialWhereInput
+    orderBy?: ValorParcialOrderByWithRelationInput | ValorParcialOrderByWithRelationInput[]
+    cursor?: ValorParcialWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ValorParcialScalarFieldEnum | ValorParcialScalarFieldEnum[]
   }
 
 
@@ -4149,6 +5334,955 @@ export namespace Prisma {
 
 
   /**
+   * Model ValorParcial
+   */
+
+  export type AggregateValorParcial = {
+    _count: ValorParcialCountAggregateOutputType | null
+    _avg: ValorParcialAvgAggregateOutputType | null
+    _sum: ValorParcialSumAggregateOutputType | null
+    _min: ValorParcialMinAggregateOutputType | null
+    _max: ValorParcialMaxAggregateOutputType | null
+  }
+
+  export type ValorParcialAvgAggregateOutputType = {
+    id: number | null
+    valor: number | null
+    pedidoId: number | null
+  }
+
+  export type ValorParcialSumAggregateOutputType = {
+    id: number | null
+    valor: number | null
+    pedidoId: number | null
+  }
+
+  export type ValorParcialMinAggregateOutputType = {
+    id: number | null
+    valor: number | null
+    updatedAt: Date | null
+    pedidoId: number | null
+  }
+
+  export type ValorParcialMaxAggregateOutputType = {
+    id: number | null
+    valor: number | null
+    updatedAt: Date | null
+    pedidoId: number | null
+  }
+
+  export type ValorParcialCountAggregateOutputType = {
+    id: number
+    valor: number
+    updatedAt: number
+    pedidoId: number
+    _all: number
+  }
+
+
+  export type ValorParcialAvgAggregateInputType = {
+    id?: true
+    valor?: true
+    pedidoId?: true
+  }
+
+  export type ValorParcialSumAggregateInputType = {
+    id?: true
+    valor?: true
+    pedidoId?: true
+  }
+
+  export type ValorParcialMinAggregateInputType = {
+    id?: true
+    valor?: true
+    updatedAt?: true
+    pedidoId?: true
+  }
+
+  export type ValorParcialMaxAggregateInputType = {
+    id?: true
+    valor?: true
+    updatedAt?: true
+    pedidoId?: true
+  }
+
+  export type ValorParcialCountAggregateInputType = {
+    id?: true
+    valor?: true
+    updatedAt?: true
+    pedidoId?: true
+    _all?: true
+  }
+
+  export type ValorParcialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ValorParcial to aggregate.
+     */
+    where?: ValorParcialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ValorParcials to fetch.
+     */
+    orderBy?: ValorParcialOrderByWithRelationInput | ValorParcialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ValorParcialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ValorParcials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ValorParcials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ValorParcials
+    **/
+    _count?: true | ValorParcialCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ValorParcialAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ValorParcialSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ValorParcialMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ValorParcialMaxAggregateInputType
+  }
+
+  export type GetValorParcialAggregateType<T extends ValorParcialAggregateArgs> = {
+        [P in keyof T & keyof AggregateValorParcial]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateValorParcial[P]>
+      : GetScalarType<T[P], AggregateValorParcial[P]>
+  }
+
+
+
+
+  export type ValorParcialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ValorParcialWhereInput
+    orderBy?: ValorParcialOrderByWithAggregationInput | ValorParcialOrderByWithAggregationInput[]
+    by: ValorParcialScalarFieldEnum[] | ValorParcialScalarFieldEnum
+    having?: ValorParcialScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ValorParcialCountAggregateInputType | true
+    _avg?: ValorParcialAvgAggregateInputType
+    _sum?: ValorParcialSumAggregateInputType
+    _min?: ValorParcialMinAggregateInputType
+    _max?: ValorParcialMaxAggregateInputType
+  }
+
+  export type ValorParcialGroupByOutputType = {
+    id: number
+    valor: number
+    updatedAt: Date
+    pedidoId: number
+    _count: ValorParcialCountAggregateOutputType | null
+    _avg: ValorParcialAvgAggregateOutputType | null
+    _sum: ValorParcialSumAggregateOutputType | null
+    _min: ValorParcialMinAggregateOutputType | null
+    _max: ValorParcialMaxAggregateOutputType | null
+  }
+
+  type GetValorParcialGroupByPayload<T extends ValorParcialGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ValorParcialGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ValorParcialGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ValorParcialGroupByOutputType[P]>
+            : GetScalarType<T[P], ValorParcialGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ValorParcialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    valor?: boolean
+    updatedAt?: boolean
+    pedidoId?: boolean
+    mesa?: boolean | MesaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["valorParcial"]>
+
+  export type ValorParcialSelectScalar = {
+    id?: boolean
+    valor?: boolean
+    updatedAt?: boolean
+    pedidoId?: boolean
+  }
+
+  export type ValorParcialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mesa?: boolean | MesaDefaultArgs<ExtArgs>
+  }
+
+
+  export type $ValorParcialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ValorParcial"
+    objects: {
+      mesa: Prisma.$MesaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      valor: number
+      updatedAt: Date
+      pedidoId: number
+    }, ExtArgs["result"]["valorParcial"]>
+    composites: {}
+  }
+
+
+  type ValorParcialGetPayload<S extends boolean | null | undefined | ValorParcialDefaultArgs> = $Result.GetResult<Prisma.$ValorParcialPayload, S>
+
+  type ValorParcialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ValorParcialFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: ValorParcialCountAggregateInputType | true
+    }
+
+  export interface ValorParcialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ValorParcial'], meta: { name: 'ValorParcial' } }
+    /**
+     * Find zero or one ValorParcial that matches the filter.
+     * @param {ValorParcialFindUniqueArgs} args - Arguments to find a ValorParcial
+     * @example
+     * // Get one ValorParcial
+     * const valorParcial = await prisma.valorParcial.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ValorParcialFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ValorParcialFindUniqueArgs<ExtArgs>>
+    ): Prisma__ValorParcialClient<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one ValorParcial that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ValorParcialFindUniqueOrThrowArgs} args - Arguments to find a ValorParcial
+     * @example
+     * // Get one ValorParcial
+     * const valorParcial = await prisma.valorParcial.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ValorParcialFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ValorParcialFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ValorParcialClient<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first ValorParcial that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValorParcialFindFirstArgs} args - Arguments to find a ValorParcial
+     * @example
+     * // Get one ValorParcial
+     * const valorParcial = await prisma.valorParcial.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ValorParcialFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ValorParcialFindFirstArgs<ExtArgs>>
+    ): Prisma__ValorParcialClient<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first ValorParcial that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValorParcialFindFirstOrThrowArgs} args - Arguments to find a ValorParcial
+     * @example
+     * // Get one ValorParcial
+     * const valorParcial = await prisma.valorParcial.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ValorParcialFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ValorParcialFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ValorParcialClient<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more ValorParcials that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValorParcialFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ValorParcials
+     * const valorParcials = await prisma.valorParcial.findMany()
+     * 
+     * // Get first 10 ValorParcials
+     * const valorParcials = await prisma.valorParcial.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const valorParcialWithIdOnly = await prisma.valorParcial.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ValorParcialFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ValorParcialFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a ValorParcial.
+     * @param {ValorParcialCreateArgs} args - Arguments to create a ValorParcial.
+     * @example
+     * // Create one ValorParcial
+     * const ValorParcial = await prisma.valorParcial.create({
+     *   data: {
+     *     // ... data to create a ValorParcial
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ValorParcialCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ValorParcialCreateArgs<ExtArgs>>
+    ): Prisma__ValorParcialClient<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many ValorParcials.
+     *     @param {ValorParcialCreateManyArgs} args - Arguments to create many ValorParcials.
+     *     @example
+     *     // Create many ValorParcials
+     *     const valorParcial = await prisma.valorParcial.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ValorParcialCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ValorParcialCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ValorParcial.
+     * @param {ValorParcialDeleteArgs} args - Arguments to delete one ValorParcial.
+     * @example
+     * // Delete one ValorParcial
+     * const ValorParcial = await prisma.valorParcial.delete({
+     *   where: {
+     *     // ... filter to delete one ValorParcial
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ValorParcialDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ValorParcialDeleteArgs<ExtArgs>>
+    ): Prisma__ValorParcialClient<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one ValorParcial.
+     * @param {ValorParcialUpdateArgs} args - Arguments to update one ValorParcial.
+     * @example
+     * // Update one ValorParcial
+     * const valorParcial = await prisma.valorParcial.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ValorParcialUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ValorParcialUpdateArgs<ExtArgs>>
+    ): Prisma__ValorParcialClient<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ValorParcials.
+     * @param {ValorParcialDeleteManyArgs} args - Arguments to filter ValorParcials to delete.
+     * @example
+     * // Delete a few ValorParcials
+     * const { count } = await prisma.valorParcial.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ValorParcialDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ValorParcialDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ValorParcials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValorParcialUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ValorParcials
+     * const valorParcial = await prisma.valorParcial.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ValorParcialUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ValorParcialUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ValorParcial.
+     * @param {ValorParcialUpsertArgs} args - Arguments to update or create a ValorParcial.
+     * @example
+     * // Update or create a ValorParcial
+     * const valorParcial = await prisma.valorParcial.upsert({
+     *   create: {
+     *     // ... data to create a ValorParcial
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ValorParcial we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ValorParcialUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ValorParcialUpsertArgs<ExtArgs>>
+    ): Prisma__ValorParcialClient<$Result.GetResult<Prisma.$ValorParcialPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of ValorParcials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValorParcialCountArgs} args - Arguments to filter ValorParcials to count.
+     * @example
+     * // Count the number of ValorParcials
+     * const count = await prisma.valorParcial.count({
+     *   where: {
+     *     // ... the filter for the ValorParcials we want to count
+     *   }
+     * })
+    **/
+    count<T extends ValorParcialCountArgs>(
+      args?: Subset<T, ValorParcialCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ValorParcialCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ValorParcial.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValorParcialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ValorParcialAggregateArgs>(args: Subset<T, ValorParcialAggregateArgs>): Prisma.PrismaPromise<GetValorParcialAggregateType<T>>
+
+    /**
+     * Group by ValorParcial.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValorParcialGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ValorParcialGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ValorParcialGroupByArgs['orderBy'] }
+        : { orderBy?: ValorParcialGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ValorParcialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetValorParcialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ValorParcial model
+   */
+  readonly fields: ValorParcialFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ValorParcial.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ValorParcialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    mesa<T extends MesaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MesaDefaultArgs<ExtArgs>>): Prisma__MesaClient<$Result.GetResult<Prisma.$MesaPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the ValorParcial model
+   */ 
+  interface ValorParcialFieldRefs {
+    readonly id: FieldRef<"ValorParcial", 'Int'>
+    readonly valor: FieldRef<"ValorParcial", 'Float'>
+    readonly updatedAt: FieldRef<"ValorParcial", 'DateTime'>
+    readonly pedidoId: FieldRef<"ValorParcial", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * ValorParcial findUnique
+   */
+  export type ValorParcialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * Filter, which ValorParcial to fetch.
+     */
+    where: ValorParcialWhereUniqueInput
+  }
+
+
+  /**
+   * ValorParcial findUniqueOrThrow
+   */
+  export type ValorParcialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * Filter, which ValorParcial to fetch.
+     */
+    where: ValorParcialWhereUniqueInput
+  }
+
+
+  /**
+   * ValorParcial findFirst
+   */
+  export type ValorParcialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * Filter, which ValorParcial to fetch.
+     */
+    where?: ValorParcialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ValorParcials to fetch.
+     */
+    orderBy?: ValorParcialOrderByWithRelationInput | ValorParcialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ValorParcials.
+     */
+    cursor?: ValorParcialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ValorParcials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ValorParcials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ValorParcials.
+     */
+    distinct?: ValorParcialScalarFieldEnum | ValorParcialScalarFieldEnum[]
+  }
+
+
+  /**
+   * ValorParcial findFirstOrThrow
+   */
+  export type ValorParcialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * Filter, which ValorParcial to fetch.
+     */
+    where?: ValorParcialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ValorParcials to fetch.
+     */
+    orderBy?: ValorParcialOrderByWithRelationInput | ValorParcialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ValorParcials.
+     */
+    cursor?: ValorParcialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ValorParcials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ValorParcials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ValorParcials.
+     */
+    distinct?: ValorParcialScalarFieldEnum | ValorParcialScalarFieldEnum[]
+  }
+
+
+  /**
+   * ValorParcial findMany
+   */
+  export type ValorParcialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * Filter, which ValorParcials to fetch.
+     */
+    where?: ValorParcialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ValorParcials to fetch.
+     */
+    orderBy?: ValorParcialOrderByWithRelationInput | ValorParcialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ValorParcials.
+     */
+    cursor?: ValorParcialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ValorParcials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ValorParcials.
+     */
+    skip?: number
+    distinct?: ValorParcialScalarFieldEnum | ValorParcialScalarFieldEnum[]
+  }
+
+
+  /**
+   * ValorParcial create
+   */
+  export type ValorParcialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ValorParcial.
+     */
+    data: XOR<ValorParcialCreateInput, ValorParcialUncheckedCreateInput>
+  }
+
+
+  /**
+   * ValorParcial createMany
+   */
+  export type ValorParcialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ValorParcials.
+     */
+    data: ValorParcialCreateManyInput | ValorParcialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * ValorParcial update
+   */
+  export type ValorParcialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ValorParcial.
+     */
+    data: XOR<ValorParcialUpdateInput, ValorParcialUncheckedUpdateInput>
+    /**
+     * Choose, which ValorParcial to update.
+     */
+    where: ValorParcialWhereUniqueInput
+  }
+
+
+  /**
+   * ValorParcial updateMany
+   */
+  export type ValorParcialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ValorParcials.
+     */
+    data: XOR<ValorParcialUpdateManyMutationInput, ValorParcialUncheckedUpdateManyInput>
+    /**
+     * Filter which ValorParcials to update
+     */
+    where?: ValorParcialWhereInput
+  }
+
+
+  /**
+   * ValorParcial upsert
+   */
+  export type ValorParcialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ValorParcial to update in case it exists.
+     */
+    where: ValorParcialWhereUniqueInput
+    /**
+     * In case the ValorParcial found by the `where` argument doesn't exist, create a new ValorParcial with this data.
+     */
+    create: XOR<ValorParcialCreateInput, ValorParcialUncheckedCreateInput>
+    /**
+     * In case the ValorParcial was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ValorParcialUpdateInput, ValorParcialUncheckedUpdateInput>
+  }
+
+
+  /**
+   * ValorParcial delete
+   */
+  export type ValorParcialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+    /**
+     * Filter which ValorParcial to delete.
+     */
+    where: ValorParcialWhereUniqueInput
+  }
+
+
+  /**
+   * ValorParcial deleteMany
+   */
+  export type ValorParcialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ValorParcials to delete
+     */
+    where?: ValorParcialWhereInput
+  }
+
+
+  /**
+   * ValorParcial without action
+   */
+  export type ValorParcialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ValorParcial
+     */
+    select?: ValorParcialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ValorParcialInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Model PedidoEncerrado
    */
 
@@ -4324,7 +6458,7 @@ export namespace Prisma {
   export type PedidoEncerradoGroupByOutputType = {
     id: number
     mesaId: number
-    valor: number
+    valor: number | null
     formaPagamento: string
     data: Date
     _count: PedidoEncerradoCountAggregateOutputType | null
@@ -4380,7 +6514,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       mesaId: number
-      valor: number
+      valor: number | null
       formaPagamento: string
       data: Date
     }, ExtArgs["result"]["pedidoEncerrado"]>
@@ -5149,10 +7283,18 @@ export namespace Prisma {
     id: 'id',
     nome: 'nome',
     preco: 'preco',
-    categoria: 'categoria'
+    categoriaId: 'categoriaId'
   };
 
   export type ProdutoScalarFieldEnum = (typeof ProdutoScalarFieldEnum)[keyof typeof ProdutoScalarFieldEnum]
+
+
+  export const CategoriaScalarFieldEnum: {
+    id: 'id',
+    nome: 'nome'
+  };
+
+  export type CategoriaScalarFieldEnum = (typeof CategoriaScalarFieldEnum)[keyof typeof CategoriaScalarFieldEnum]
 
 
   export const MesaScalarFieldEnum: {
@@ -5175,6 +7317,16 @@ export namespace Prisma {
   };
 
   export type PedidoScalarFieldEnum = (typeof PedidoScalarFieldEnum)[keyof typeof PedidoScalarFieldEnum]
+
+
+  export const ValorParcialScalarFieldEnum: {
+    id: 'id',
+    valor: 'valor',
+    updatedAt: 'updatedAt',
+    pedidoId: 'pedidoId'
+  };
+
+  export type ValorParcialScalarFieldEnum = (typeof ValorParcialScalarFieldEnum)[keyof typeof ValorParcialScalarFieldEnum]
 
 
   export const PedidoEncerradoScalarFieldEnum: {
@@ -5283,7 +7435,8 @@ export namespace Prisma {
     id?: IntFilter<"Produto"> | number
     nome?: StringFilter<"Produto"> | string
     preco?: FloatFilter<"Produto"> | number
-    categoria?: StringFilter<"Produto"> | string
+    categoriaId?: IntFilter<"Produto"> | number
+    categoria?: XOR<CategoriaRelationFilter, CategoriaWhereInput>
     pedidos?: PedidoListRelationFilter
   }
 
@@ -5291,7 +7444,8 @@ export namespace Prisma {
     id?: SortOrder
     nome?: SortOrder
     preco?: SortOrder
-    categoria?: SortOrder
+    categoriaId?: SortOrder
+    categoria?: CategoriaOrderByWithRelationInput
     pedidos?: PedidoOrderByRelationAggregateInput
   }
 
@@ -5302,7 +7456,8 @@ export namespace Prisma {
     NOT?: ProdutoWhereInput | ProdutoWhereInput[]
     nome?: StringFilter<"Produto"> | string
     preco?: FloatFilter<"Produto"> | number
-    categoria?: StringFilter<"Produto"> | string
+    categoriaId?: IntFilter<"Produto"> | number
+    categoria?: XOR<CategoriaRelationFilter, CategoriaWhereInput>
     pedidos?: PedidoListRelationFilter
   }, "id">
 
@@ -5310,7 +7465,7 @@ export namespace Prisma {
     id?: SortOrder
     nome?: SortOrder
     preco?: SortOrder
-    categoria?: SortOrder
+    categoriaId?: SortOrder
     _count?: ProdutoCountOrderByAggregateInput
     _avg?: ProdutoAvgOrderByAggregateInput
     _max?: ProdutoMaxOrderByAggregateInput
@@ -5325,7 +7480,49 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Produto"> | number
     nome?: StringWithAggregatesFilter<"Produto"> | string
     preco?: FloatWithAggregatesFilter<"Produto"> | number
-    categoria?: StringWithAggregatesFilter<"Produto"> | string
+    categoriaId?: IntWithAggregatesFilter<"Produto"> | number
+  }
+
+  export type CategoriaWhereInput = {
+    AND?: CategoriaWhereInput | CategoriaWhereInput[]
+    OR?: CategoriaWhereInput[]
+    NOT?: CategoriaWhereInput | CategoriaWhereInput[]
+    id?: IntFilter<"Categoria"> | number
+    nome?: StringFilter<"Categoria"> | string
+    produtos?: ProdutoListRelationFilter
+  }
+
+  export type CategoriaOrderByWithRelationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    produtos?: ProdutoOrderByRelationAggregateInput
+  }
+
+  export type CategoriaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CategoriaWhereInput | CategoriaWhereInput[]
+    OR?: CategoriaWhereInput[]
+    NOT?: CategoriaWhereInput | CategoriaWhereInput[]
+    nome?: StringFilter<"Categoria"> | string
+    produtos?: ProdutoListRelationFilter
+  }, "id">
+
+  export type CategoriaOrderByWithAggregationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    _count?: CategoriaCountOrderByAggregateInput
+    _avg?: CategoriaAvgOrderByAggregateInput
+    _max?: CategoriaMaxOrderByAggregateInput
+    _min?: CategoriaMinOrderByAggregateInput
+    _sum?: CategoriaSumOrderByAggregateInput
+  }
+
+  export type CategoriaScalarWhereWithAggregatesInput = {
+    AND?: CategoriaScalarWhereWithAggregatesInput | CategoriaScalarWhereWithAggregatesInput[]
+    OR?: CategoriaScalarWhereWithAggregatesInput[]
+    NOT?: CategoriaScalarWhereWithAggregatesInput | CategoriaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Categoria"> | number
+    nome?: StringWithAggregatesFilter<"Categoria"> | string
   }
 
   export type MesaWhereInput = {
@@ -5337,6 +7534,7 @@ export namespace Prisma {
     numero?: IntFilter<"Mesa"> | number
     status?: StringFilter<"Mesa"> | string
     pedidos?: PedidoListRelationFilter
+    valorParcial?: ValorParcialListRelationFilter
   }
 
   export type MesaOrderByWithRelationInput = {
@@ -5345,6 +7543,7 @@ export namespace Prisma {
     numero?: SortOrder
     status?: SortOrder
     pedidos?: PedidoOrderByRelationAggregateInput
+    valorParcial?: ValorParcialOrderByRelationAggregateInput
   }
 
   export type MesaWhereUniqueInput = Prisma.AtLeast<{
@@ -5356,6 +7555,7 @@ export namespace Prisma {
     numero?: IntFilter<"Mesa"> | number
     status?: StringFilter<"Mesa"> | string
     pedidos?: PedidoListRelationFilter
+    valorParcial?: ValorParcialListRelationFilter
   }, "id">
 
   export type MesaOrderByWithAggregationInput = {
@@ -5448,13 +7648,65 @@ export namespace Prisma {
     pedidoEncerradoId?: IntNullableWithAggregatesFilter<"Pedido"> | number | null
   }
 
+  export type ValorParcialWhereInput = {
+    AND?: ValorParcialWhereInput | ValorParcialWhereInput[]
+    OR?: ValorParcialWhereInput[]
+    NOT?: ValorParcialWhereInput | ValorParcialWhereInput[]
+    id?: IntFilter<"ValorParcial"> | number
+    valor?: FloatFilter<"ValorParcial"> | number
+    updatedAt?: DateTimeFilter<"ValorParcial"> | Date | string
+    pedidoId?: IntFilter<"ValorParcial"> | number
+    mesa?: XOR<MesaRelationFilter, MesaWhereInput>
+  }
+
+  export type ValorParcialOrderByWithRelationInput = {
+    id?: SortOrder
+    valor?: SortOrder
+    updatedAt?: SortOrder
+    pedidoId?: SortOrder
+    mesa?: MesaOrderByWithRelationInput
+  }
+
+  export type ValorParcialWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ValorParcialWhereInput | ValorParcialWhereInput[]
+    OR?: ValorParcialWhereInput[]
+    NOT?: ValorParcialWhereInput | ValorParcialWhereInput[]
+    valor?: FloatFilter<"ValorParcial"> | number
+    updatedAt?: DateTimeFilter<"ValorParcial"> | Date | string
+    pedidoId?: IntFilter<"ValorParcial"> | number
+    mesa?: XOR<MesaRelationFilter, MesaWhereInput>
+  }, "id">
+
+  export type ValorParcialOrderByWithAggregationInput = {
+    id?: SortOrder
+    valor?: SortOrder
+    updatedAt?: SortOrder
+    pedidoId?: SortOrder
+    _count?: ValorParcialCountOrderByAggregateInput
+    _avg?: ValorParcialAvgOrderByAggregateInput
+    _max?: ValorParcialMaxOrderByAggregateInput
+    _min?: ValorParcialMinOrderByAggregateInput
+    _sum?: ValorParcialSumOrderByAggregateInput
+  }
+
+  export type ValorParcialScalarWhereWithAggregatesInput = {
+    AND?: ValorParcialScalarWhereWithAggregatesInput | ValorParcialScalarWhereWithAggregatesInput[]
+    OR?: ValorParcialScalarWhereWithAggregatesInput[]
+    NOT?: ValorParcialScalarWhereWithAggregatesInput | ValorParcialScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ValorParcial"> | number
+    valor?: FloatWithAggregatesFilter<"ValorParcial"> | number
+    updatedAt?: DateTimeWithAggregatesFilter<"ValorParcial"> | Date | string
+    pedidoId?: IntWithAggregatesFilter<"ValorParcial"> | number
+  }
+
   export type PedidoEncerradoWhereInput = {
     AND?: PedidoEncerradoWhereInput | PedidoEncerradoWhereInput[]
     OR?: PedidoEncerradoWhereInput[]
     NOT?: PedidoEncerradoWhereInput | PedidoEncerradoWhereInput[]
     id?: IntFilter<"PedidoEncerrado"> | number
     mesaId?: IntFilter<"PedidoEncerrado"> | number
-    valor?: FloatFilter<"PedidoEncerrado"> | number
+    valor?: FloatNullableFilter<"PedidoEncerrado"> | number | null
     formaPagamento?: StringFilter<"PedidoEncerrado"> | string
     data?: DateTimeFilter<"PedidoEncerrado"> | Date | string
     pedidos?: PedidoListRelationFilter
@@ -5463,7 +7715,7 @@ export namespace Prisma {
   export type PedidoEncerradoOrderByWithRelationInput = {
     id?: SortOrder
     mesaId?: SortOrder
-    valor?: SortOrder
+    valor?: SortOrderInput | SortOrder
     formaPagamento?: SortOrder
     data?: SortOrder
     pedidos?: PedidoOrderByRelationAggregateInput
@@ -5475,7 +7727,7 @@ export namespace Prisma {
     OR?: PedidoEncerradoWhereInput[]
     NOT?: PedidoEncerradoWhereInput | PedidoEncerradoWhereInput[]
     mesaId?: IntFilter<"PedidoEncerrado"> | number
-    valor?: FloatFilter<"PedidoEncerrado"> | number
+    valor?: FloatNullableFilter<"PedidoEncerrado"> | number | null
     formaPagamento?: StringFilter<"PedidoEncerrado"> | string
     data?: DateTimeFilter<"PedidoEncerrado"> | Date | string
     pedidos?: PedidoListRelationFilter
@@ -5484,7 +7736,7 @@ export namespace Prisma {
   export type PedidoEncerradoOrderByWithAggregationInput = {
     id?: SortOrder
     mesaId?: SortOrder
-    valor?: SortOrder
+    valor?: SortOrderInput | SortOrder
     formaPagamento?: SortOrder
     data?: SortOrder
     _count?: PedidoEncerradoCountOrderByAggregateInput
@@ -5500,7 +7752,7 @@ export namespace Prisma {
     NOT?: PedidoEncerradoScalarWhereWithAggregatesInput | PedidoEncerradoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PedidoEncerrado"> | number
     mesaId?: IntWithAggregatesFilter<"PedidoEncerrado"> | number
-    valor?: FloatWithAggregatesFilter<"PedidoEncerrado"> | number
+    valor?: FloatNullableWithAggregatesFilter<"PedidoEncerrado"> | number | null
     formaPagamento?: StringWithAggregatesFilter<"PedidoEncerrado"> | string
     data?: DateTimeWithAggregatesFilter<"PedidoEncerrado"> | Date | string
   }
@@ -5508,7 +7760,7 @@ export namespace Prisma {
   export type ProdutoCreateInput = {
     nome: string
     preco: number
-    categoria: string
+    categoria: CategoriaCreateNestedOneWithoutProdutosInput
     pedidos?: PedidoCreateNestedManyWithoutProdutoInput
   }
 
@@ -5516,14 +7768,14 @@ export namespace Prisma {
     id?: number
     nome: string
     preco: number
-    categoria: string
+    categoriaId: number
     pedidos?: PedidoUncheckedCreateNestedManyWithoutProdutoInput
   }
 
   export type ProdutoUpdateInput = {
     nome?: StringFieldUpdateOperationsInput | string
     preco?: FloatFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
+    categoria?: CategoriaUpdateOneRequiredWithoutProdutosNestedInput
     pedidos?: PedidoUpdateManyWithoutProdutoNestedInput
   }
 
@@ -5531,7 +7783,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     preco?: FloatFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
+    categoriaId?: IntFieldUpdateOperationsInput | number
     pedidos?: PedidoUncheckedUpdateManyWithoutProdutoNestedInput
   }
 
@@ -5539,20 +7791,55 @@ export namespace Prisma {
     id?: number
     nome: string
     preco: number
-    categoria: string
+    categoriaId: number
   }
 
   export type ProdutoUpdateManyMutationInput = {
     nome?: StringFieldUpdateOperationsInput | string
     preco?: FloatFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProdutoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     preco?: FloatFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
+    categoriaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CategoriaCreateInput = {
+    nome: string
+    produtos?: ProdutoCreateNestedManyWithoutCategoriaInput
+  }
+
+  export type CategoriaUncheckedCreateInput = {
+    id?: number
+    nome: string
+    produtos?: ProdutoUncheckedCreateNestedManyWithoutCategoriaInput
+  }
+
+  export type CategoriaUpdateInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+    produtos?: ProdutoUpdateManyWithoutCategoriaNestedInput
+  }
+
+  export type CategoriaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+    produtos?: ProdutoUncheckedUpdateManyWithoutCategoriaNestedInput
+  }
+
+  export type CategoriaCreateManyInput = {
+    id?: number
+    nome: string
+  }
+
+  export type CategoriaUpdateManyMutationInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoriaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
   }
 
   export type MesaCreateInput = {
@@ -5560,6 +7847,7 @@ export namespace Prisma {
     numero: number
     status: string
     pedidos?: PedidoCreateNestedManyWithoutMesaInput
+    valorParcial?: ValorParcialCreateNestedManyWithoutMesaInput
   }
 
   export type MesaUncheckedCreateInput = {
@@ -5568,6 +7856,7 @@ export namespace Prisma {
     numero: number
     status: string
     pedidos?: PedidoUncheckedCreateNestedManyWithoutMesaInput
+    valorParcial?: ValorParcialUncheckedCreateNestedManyWithoutMesaInput
   }
 
   export type MesaUpdateInput = {
@@ -5575,6 +7864,7 @@ export namespace Prisma {
     numero?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     pedidos?: PedidoUpdateManyWithoutMesaNestedInput
+    valorParcial?: ValorParcialUpdateManyWithoutMesaNestedInput
   }
 
   export type MesaUncheckedUpdateInput = {
@@ -5583,6 +7873,7 @@ export namespace Prisma {
     numero?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     pedidos?: PedidoUncheckedUpdateManyWithoutMesaNestedInput
+    valorParcial?: ValorParcialUncheckedUpdateManyWithoutMesaNestedInput
   }
 
   export type MesaCreateManyInput = {
@@ -5662,9 +7953,54 @@ export namespace Prisma {
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type ValorParcialCreateInput = {
+    valor: number
+    updatedAt: Date | string
+    mesa: MesaCreateNestedOneWithoutValorParcialInput
+  }
+
+  export type ValorParcialUncheckedCreateInput = {
+    id?: number
+    valor: number
+    updatedAt: Date | string
+    pedidoId: number
+  }
+
+  export type ValorParcialUpdateInput = {
+    valor?: FloatFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mesa?: MesaUpdateOneRequiredWithoutValorParcialNestedInput
+  }
+
+  export type ValorParcialUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    valor?: FloatFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pedidoId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ValorParcialCreateManyInput = {
+    id?: number
+    valor: number
+    updatedAt: Date | string
+    pedidoId: number
+  }
+
+  export type ValorParcialUpdateManyMutationInput = {
+    valor?: FloatFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ValorParcialUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    valor?: FloatFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pedidoId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type PedidoEncerradoCreateInput = {
     mesaId: number
-    valor: number
+    valor?: number | null
     formaPagamento: string
     data: Date | string
     pedidos?: PedidoCreateNestedManyWithoutPedidoEncerradoInput
@@ -5673,7 +8009,7 @@ export namespace Prisma {
   export type PedidoEncerradoUncheckedCreateInput = {
     id?: number
     mesaId: number
-    valor: number
+    valor?: number | null
     formaPagamento: string
     data: Date | string
     pedidos?: PedidoUncheckedCreateNestedManyWithoutPedidoEncerradoInput
@@ -5681,7 +8017,7 @@ export namespace Prisma {
 
   export type PedidoEncerradoUpdateInput = {
     mesaId?: IntFieldUpdateOperationsInput | number
-    valor?: FloatFieldUpdateOperationsInput | number
+    valor?: NullableFloatFieldUpdateOperationsInput | number | null
     formaPagamento?: StringFieldUpdateOperationsInput | string
     data?: DateTimeFieldUpdateOperationsInput | Date | string
     pedidos?: PedidoUpdateManyWithoutPedidoEncerradoNestedInput
@@ -5690,7 +8026,7 @@ export namespace Prisma {
   export type PedidoEncerradoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    valor?: FloatFieldUpdateOperationsInput | number
+    valor?: NullableFloatFieldUpdateOperationsInput | number | null
     formaPagamento?: StringFieldUpdateOperationsInput | string
     data?: DateTimeFieldUpdateOperationsInput | Date | string
     pedidos?: PedidoUncheckedUpdateManyWithoutPedidoEncerradoNestedInput
@@ -5699,14 +8035,14 @@ export namespace Prisma {
   export type PedidoEncerradoCreateManyInput = {
     id?: number
     mesaId: number
-    valor: number
+    valor?: number | null
     formaPagamento: string
     data: Date | string
   }
 
   export type PedidoEncerradoUpdateManyMutationInput = {
     mesaId?: IntFieldUpdateOperationsInput | number
-    valor?: FloatFieldUpdateOperationsInput | number
+    valor?: NullableFloatFieldUpdateOperationsInput | number | null
     formaPagamento?: StringFieldUpdateOperationsInput | string
     data?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5714,7 +8050,7 @@ export namespace Prisma {
   export type PedidoEncerradoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    valor?: FloatFieldUpdateOperationsInput | number
+    valor?: NullableFloatFieldUpdateOperationsInput | number | null
     formaPagamento?: StringFieldUpdateOperationsInput | string
     data?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5756,6 +8092,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type CategoriaRelationFilter = {
+    is?: CategoriaWhereInput
+    isNot?: CategoriaWhereInput
+  }
+
   export type PedidoListRelationFilter = {
     every?: PedidoWhereInput
     some?: PedidoWhereInput
@@ -5770,31 +8111,33 @@ export namespace Prisma {
     id?: SortOrder
     nome?: SortOrder
     preco?: SortOrder
-    categoria?: SortOrder
+    categoriaId?: SortOrder
   }
 
   export type ProdutoAvgOrderByAggregateInput = {
     id?: SortOrder
     preco?: SortOrder
+    categoriaId?: SortOrder
   }
 
   export type ProdutoMaxOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
     preco?: SortOrder
-    categoria?: SortOrder
+    categoriaId?: SortOrder
   }
 
   export type ProdutoMinOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
     preco?: SortOrder
-    categoria?: SortOrder
+    categoriaId?: SortOrder
   }
 
   export type ProdutoSumOrderByAggregateInput = {
     id?: SortOrder
     preco?: SortOrder
+    categoriaId?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -5847,6 +8190,39 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type ProdutoListRelationFilter = {
+    every?: ProdutoWhereInput
+    some?: ProdutoWhereInput
+    none?: ProdutoWhereInput
+  }
+
+  export type ProdutoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CategoriaCountOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+  }
+
+  export type CategoriaAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type CategoriaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+  }
+
+  export type CategoriaMinOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+  }
+
+  export type CategoriaSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -5862,9 +8238,19 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type ValorParcialListRelationFilter = {
+    every?: ValorParcialWhereInput
+    some?: ValorParcialWhereInput
+    none?: ValorParcialWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ValorParcialOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type MesaCountOrderByAggregateInput = {
@@ -6014,6 +8400,64 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type ValorParcialCountOrderByAggregateInput = {
+    id?: SortOrder
+    valor?: SortOrder
+    updatedAt?: SortOrder
+    pedidoId?: SortOrder
+  }
+
+  export type ValorParcialAvgOrderByAggregateInput = {
+    id?: SortOrder
+    valor?: SortOrder
+    pedidoId?: SortOrder
+  }
+
+  export type ValorParcialMaxOrderByAggregateInput = {
+    id?: SortOrder
+    valor?: SortOrder
+    updatedAt?: SortOrder
+    pedidoId?: SortOrder
+  }
+
+  export type ValorParcialMinOrderByAggregateInput = {
+    id?: SortOrder
+    valor?: SortOrder
+    updatedAt?: SortOrder
+    pedidoId?: SortOrder
+  }
+
+  export type ValorParcialSumOrderByAggregateInput = {
+    id?: SortOrder
+    valor?: SortOrder
+    pedidoId?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type PedidoEncerradoCountOrderByAggregateInput = {
     id?: SortOrder
     mesaId?: SortOrder
@@ -6050,18 +8494,26 @@ export namespace Prisma {
     valor?: SortOrder
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type CategoriaCreateNestedOneWithoutProdutosInput = {
+    create?: XOR<CategoriaCreateWithoutProdutosInput, CategoriaUncheckedCreateWithoutProdutosInput>
+    connectOrCreate?: CategoriaCreateOrConnectWithoutProdutosInput
+    connect?: CategoriaWhereUniqueInput
   }
 
   export type PedidoCreateNestedManyWithoutProdutoInput = {
@@ -6088,6 +8540,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type CategoriaUpdateOneRequiredWithoutProdutosNestedInput = {
+    create?: XOR<CategoriaCreateWithoutProdutosInput, CategoriaUncheckedCreateWithoutProdutosInput>
+    connectOrCreate?: CategoriaCreateOrConnectWithoutProdutosInput
+    upsert?: CategoriaUpsertWithoutProdutosInput
+    connect?: CategoriaWhereUniqueInput
+    update?: XOR<XOR<CategoriaUpdateToOneWithWhereWithoutProdutosInput, CategoriaUpdateWithoutProdutosInput>, CategoriaUncheckedUpdateWithoutProdutosInput>
   }
 
   export type PedidoUpdateManyWithoutProdutoNestedInput = {
@@ -6126,6 +8586,48 @@ export namespace Prisma {
     deleteMany?: PedidoScalarWhereInput | PedidoScalarWhereInput[]
   }
 
+  export type ProdutoCreateNestedManyWithoutCategoriaInput = {
+    create?: XOR<ProdutoCreateWithoutCategoriaInput, ProdutoUncheckedCreateWithoutCategoriaInput> | ProdutoCreateWithoutCategoriaInput[] | ProdutoUncheckedCreateWithoutCategoriaInput[]
+    connectOrCreate?: ProdutoCreateOrConnectWithoutCategoriaInput | ProdutoCreateOrConnectWithoutCategoriaInput[]
+    createMany?: ProdutoCreateManyCategoriaInputEnvelope
+    connect?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+  }
+
+  export type ProdutoUncheckedCreateNestedManyWithoutCategoriaInput = {
+    create?: XOR<ProdutoCreateWithoutCategoriaInput, ProdutoUncheckedCreateWithoutCategoriaInput> | ProdutoCreateWithoutCategoriaInput[] | ProdutoUncheckedCreateWithoutCategoriaInput[]
+    connectOrCreate?: ProdutoCreateOrConnectWithoutCategoriaInput | ProdutoCreateOrConnectWithoutCategoriaInput[]
+    createMany?: ProdutoCreateManyCategoriaInputEnvelope
+    connect?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+  }
+
+  export type ProdutoUpdateManyWithoutCategoriaNestedInput = {
+    create?: XOR<ProdutoCreateWithoutCategoriaInput, ProdutoUncheckedCreateWithoutCategoriaInput> | ProdutoCreateWithoutCategoriaInput[] | ProdutoUncheckedCreateWithoutCategoriaInput[]
+    connectOrCreate?: ProdutoCreateOrConnectWithoutCategoriaInput | ProdutoCreateOrConnectWithoutCategoriaInput[]
+    upsert?: ProdutoUpsertWithWhereUniqueWithoutCategoriaInput | ProdutoUpsertWithWhereUniqueWithoutCategoriaInput[]
+    createMany?: ProdutoCreateManyCategoriaInputEnvelope
+    set?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+    disconnect?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+    delete?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+    connect?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+    update?: ProdutoUpdateWithWhereUniqueWithoutCategoriaInput | ProdutoUpdateWithWhereUniqueWithoutCategoriaInput[]
+    updateMany?: ProdutoUpdateManyWithWhereWithoutCategoriaInput | ProdutoUpdateManyWithWhereWithoutCategoriaInput[]
+    deleteMany?: ProdutoScalarWhereInput | ProdutoScalarWhereInput[]
+  }
+
+  export type ProdutoUncheckedUpdateManyWithoutCategoriaNestedInput = {
+    create?: XOR<ProdutoCreateWithoutCategoriaInput, ProdutoUncheckedCreateWithoutCategoriaInput> | ProdutoCreateWithoutCategoriaInput[] | ProdutoUncheckedCreateWithoutCategoriaInput[]
+    connectOrCreate?: ProdutoCreateOrConnectWithoutCategoriaInput | ProdutoCreateOrConnectWithoutCategoriaInput[]
+    upsert?: ProdutoUpsertWithWhereUniqueWithoutCategoriaInput | ProdutoUpsertWithWhereUniqueWithoutCategoriaInput[]
+    createMany?: ProdutoCreateManyCategoriaInputEnvelope
+    set?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+    disconnect?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+    delete?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+    connect?: ProdutoWhereUniqueInput | ProdutoWhereUniqueInput[]
+    update?: ProdutoUpdateWithWhereUniqueWithoutCategoriaInput | ProdutoUpdateWithWhereUniqueWithoutCategoriaInput[]
+    updateMany?: ProdutoUpdateManyWithWhereWithoutCategoriaInput | ProdutoUpdateManyWithWhereWithoutCategoriaInput[]
+    deleteMany?: ProdutoScalarWhereInput | ProdutoScalarWhereInput[]
+  }
+
   export type PedidoCreateNestedManyWithoutMesaInput = {
     create?: XOR<PedidoCreateWithoutMesaInput, PedidoUncheckedCreateWithoutMesaInput> | PedidoCreateWithoutMesaInput[] | PedidoUncheckedCreateWithoutMesaInput[]
     connectOrCreate?: PedidoCreateOrConnectWithoutMesaInput | PedidoCreateOrConnectWithoutMesaInput[]
@@ -6133,11 +8635,25 @@ export namespace Prisma {
     connect?: PedidoWhereUniqueInput | PedidoWhereUniqueInput[]
   }
 
+  export type ValorParcialCreateNestedManyWithoutMesaInput = {
+    create?: XOR<ValorParcialCreateWithoutMesaInput, ValorParcialUncheckedCreateWithoutMesaInput> | ValorParcialCreateWithoutMesaInput[] | ValorParcialUncheckedCreateWithoutMesaInput[]
+    connectOrCreate?: ValorParcialCreateOrConnectWithoutMesaInput | ValorParcialCreateOrConnectWithoutMesaInput[]
+    createMany?: ValorParcialCreateManyMesaInputEnvelope
+    connect?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+  }
+
   export type PedidoUncheckedCreateNestedManyWithoutMesaInput = {
     create?: XOR<PedidoCreateWithoutMesaInput, PedidoUncheckedCreateWithoutMesaInput> | PedidoCreateWithoutMesaInput[] | PedidoUncheckedCreateWithoutMesaInput[]
     connectOrCreate?: PedidoCreateOrConnectWithoutMesaInput | PedidoCreateOrConnectWithoutMesaInput[]
     createMany?: PedidoCreateManyMesaInputEnvelope
     connect?: PedidoWhereUniqueInput | PedidoWhereUniqueInput[]
+  }
+
+  export type ValorParcialUncheckedCreateNestedManyWithoutMesaInput = {
+    create?: XOR<ValorParcialCreateWithoutMesaInput, ValorParcialUncheckedCreateWithoutMesaInput> | ValorParcialCreateWithoutMesaInput[] | ValorParcialUncheckedCreateWithoutMesaInput[]
+    connectOrCreate?: ValorParcialCreateOrConnectWithoutMesaInput | ValorParcialCreateOrConnectWithoutMesaInput[]
+    createMany?: ValorParcialCreateManyMesaInputEnvelope
+    connect?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -6158,6 +8674,20 @@ export namespace Prisma {
     deleteMany?: PedidoScalarWhereInput | PedidoScalarWhereInput[]
   }
 
+  export type ValorParcialUpdateManyWithoutMesaNestedInput = {
+    create?: XOR<ValorParcialCreateWithoutMesaInput, ValorParcialUncheckedCreateWithoutMesaInput> | ValorParcialCreateWithoutMesaInput[] | ValorParcialUncheckedCreateWithoutMesaInput[]
+    connectOrCreate?: ValorParcialCreateOrConnectWithoutMesaInput | ValorParcialCreateOrConnectWithoutMesaInput[]
+    upsert?: ValorParcialUpsertWithWhereUniqueWithoutMesaInput | ValorParcialUpsertWithWhereUniqueWithoutMesaInput[]
+    createMany?: ValorParcialCreateManyMesaInputEnvelope
+    set?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+    disconnect?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+    delete?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+    connect?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+    update?: ValorParcialUpdateWithWhereUniqueWithoutMesaInput | ValorParcialUpdateWithWhereUniqueWithoutMesaInput[]
+    updateMany?: ValorParcialUpdateManyWithWhereWithoutMesaInput | ValorParcialUpdateManyWithWhereWithoutMesaInput[]
+    deleteMany?: ValorParcialScalarWhereInput | ValorParcialScalarWhereInput[]
+  }
+
   export type PedidoUncheckedUpdateManyWithoutMesaNestedInput = {
     create?: XOR<PedidoCreateWithoutMesaInput, PedidoUncheckedCreateWithoutMesaInput> | PedidoCreateWithoutMesaInput[] | PedidoUncheckedCreateWithoutMesaInput[]
     connectOrCreate?: PedidoCreateOrConnectWithoutMesaInput | PedidoCreateOrConnectWithoutMesaInput[]
@@ -6170,6 +8700,20 @@ export namespace Prisma {
     update?: PedidoUpdateWithWhereUniqueWithoutMesaInput | PedidoUpdateWithWhereUniqueWithoutMesaInput[]
     updateMany?: PedidoUpdateManyWithWhereWithoutMesaInput | PedidoUpdateManyWithWhereWithoutMesaInput[]
     deleteMany?: PedidoScalarWhereInput | PedidoScalarWhereInput[]
+  }
+
+  export type ValorParcialUncheckedUpdateManyWithoutMesaNestedInput = {
+    create?: XOR<ValorParcialCreateWithoutMesaInput, ValorParcialUncheckedCreateWithoutMesaInput> | ValorParcialCreateWithoutMesaInput[] | ValorParcialUncheckedCreateWithoutMesaInput[]
+    connectOrCreate?: ValorParcialCreateOrConnectWithoutMesaInput | ValorParcialCreateOrConnectWithoutMesaInput[]
+    upsert?: ValorParcialUpsertWithWhereUniqueWithoutMesaInput | ValorParcialUpsertWithWhereUniqueWithoutMesaInput[]
+    createMany?: ValorParcialCreateManyMesaInputEnvelope
+    set?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+    disconnect?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+    delete?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+    connect?: ValorParcialWhereUniqueInput | ValorParcialWhereUniqueInput[]
+    update?: ValorParcialUpdateWithWhereUniqueWithoutMesaInput | ValorParcialUpdateWithWhereUniqueWithoutMesaInput[]
+    updateMany?: ValorParcialUpdateManyWithWhereWithoutMesaInput | ValorParcialUpdateManyWithWhereWithoutMesaInput[]
+    deleteMany?: ValorParcialScalarWhereInput | ValorParcialScalarWhereInput[]
   }
 
   export type MesaCreateNestedOneWithoutPedidosInput = {
@@ -6224,6 +8768,24 @@ export namespace Prisma {
     update?: XOR<XOR<ProdutoUpdateToOneWithWhereWithoutPedidosInput, ProdutoUpdateWithoutPedidosInput>, ProdutoUncheckedUpdateWithoutPedidosInput>
   }
 
+  export type MesaCreateNestedOneWithoutValorParcialInput = {
+    create?: XOR<MesaCreateWithoutValorParcialInput, MesaUncheckedCreateWithoutValorParcialInput>
+    connectOrCreate?: MesaCreateOrConnectWithoutValorParcialInput
+    connect?: MesaWhereUniqueInput
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type MesaUpdateOneRequiredWithoutValorParcialNestedInput = {
+    create?: XOR<MesaCreateWithoutValorParcialInput, MesaUncheckedCreateWithoutValorParcialInput>
+    connectOrCreate?: MesaCreateOrConnectWithoutValorParcialInput
+    upsert?: MesaUpsertWithoutValorParcialInput
+    connect?: MesaWhereUniqueInput
+    update?: XOR<XOR<MesaUpdateToOneWithWhereWithoutValorParcialInput, MesaUpdateWithoutValorParcialInput>, MesaUncheckedUpdateWithoutValorParcialInput>
+  }
+
   export type PedidoCreateNestedManyWithoutPedidoEncerradoInput = {
     create?: XOR<PedidoCreateWithoutPedidoEncerradoInput, PedidoUncheckedCreateWithoutPedidoEncerradoInput> | PedidoCreateWithoutPedidoEncerradoInput[] | PedidoUncheckedCreateWithoutPedidoEncerradoInput[]
     connectOrCreate?: PedidoCreateOrConnectWithoutPedidoEncerradoInput | PedidoCreateOrConnectWithoutPedidoEncerradoInput[]
@@ -6238,8 +8800,12 @@ export namespace Prisma {
     connect?: PedidoWhereUniqueInput | PedidoWhereUniqueInput[]
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type PedidoUpdateManyWithoutPedidoEncerradoNestedInput = {
@@ -6449,6 +9015,36 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type CategoriaCreateWithoutProdutosInput = {
+    nome: string
+  }
+
+  export type CategoriaUncheckedCreateWithoutProdutosInput = {
+    id?: number
+    nome: string
+  }
+
+  export type CategoriaCreateOrConnectWithoutProdutosInput = {
+    where: CategoriaWhereUniqueInput
+    create: XOR<CategoriaCreateWithoutProdutosInput, CategoriaUncheckedCreateWithoutProdutosInput>
+  }
+
   export type PedidoCreateWithoutProdutoInput = {
     comandaId?: number | null
     quantidade: number
@@ -6472,6 +9068,26 @@ export namespace Prisma {
   export type PedidoCreateManyProdutoInputEnvelope = {
     data: PedidoCreateManyProdutoInput | PedidoCreateManyProdutoInput[]
     skipDuplicates?: boolean
+  }
+
+  export type CategoriaUpsertWithoutProdutosInput = {
+    update: XOR<CategoriaUpdateWithoutProdutosInput, CategoriaUncheckedUpdateWithoutProdutosInput>
+    create: XOR<CategoriaCreateWithoutProdutosInput, CategoriaUncheckedCreateWithoutProdutosInput>
+    where?: CategoriaWhereInput
+  }
+
+  export type CategoriaUpdateToOneWithWhereWithoutProdutosInput = {
+    where?: CategoriaWhereInput
+    data: XOR<CategoriaUpdateWithoutProdutosInput, CategoriaUncheckedUpdateWithoutProdutosInput>
+  }
+
+  export type CategoriaUpdateWithoutProdutosInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CategoriaUncheckedUpdateWithoutProdutosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
   }
 
   export type PedidoUpsertWithWhereUniqueWithoutProdutoInput = {
@@ -6502,6 +9118,55 @@ export namespace Prisma {
     pedidoEncerradoId?: IntNullableFilter<"Pedido"> | number | null
   }
 
+  export type ProdutoCreateWithoutCategoriaInput = {
+    nome: string
+    preco: number
+    pedidos?: PedidoCreateNestedManyWithoutProdutoInput
+  }
+
+  export type ProdutoUncheckedCreateWithoutCategoriaInput = {
+    id?: number
+    nome: string
+    preco: number
+    pedidos?: PedidoUncheckedCreateNestedManyWithoutProdutoInput
+  }
+
+  export type ProdutoCreateOrConnectWithoutCategoriaInput = {
+    where: ProdutoWhereUniqueInput
+    create: XOR<ProdutoCreateWithoutCategoriaInput, ProdutoUncheckedCreateWithoutCategoriaInput>
+  }
+
+  export type ProdutoCreateManyCategoriaInputEnvelope = {
+    data: ProdutoCreateManyCategoriaInput | ProdutoCreateManyCategoriaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProdutoUpsertWithWhereUniqueWithoutCategoriaInput = {
+    where: ProdutoWhereUniqueInput
+    update: XOR<ProdutoUpdateWithoutCategoriaInput, ProdutoUncheckedUpdateWithoutCategoriaInput>
+    create: XOR<ProdutoCreateWithoutCategoriaInput, ProdutoUncheckedCreateWithoutCategoriaInput>
+  }
+
+  export type ProdutoUpdateWithWhereUniqueWithoutCategoriaInput = {
+    where: ProdutoWhereUniqueInput
+    data: XOR<ProdutoUpdateWithoutCategoriaInput, ProdutoUncheckedUpdateWithoutCategoriaInput>
+  }
+
+  export type ProdutoUpdateManyWithWhereWithoutCategoriaInput = {
+    where: ProdutoScalarWhereInput
+    data: XOR<ProdutoUpdateManyMutationInput, ProdutoUncheckedUpdateManyWithoutCategoriaInput>
+  }
+
+  export type ProdutoScalarWhereInput = {
+    AND?: ProdutoScalarWhereInput | ProdutoScalarWhereInput[]
+    OR?: ProdutoScalarWhereInput[]
+    NOT?: ProdutoScalarWhereInput | ProdutoScalarWhereInput[]
+    id?: IntFilter<"Produto"> | number
+    nome?: StringFilter<"Produto"> | string
+    preco?: FloatFilter<"Produto"> | number
+    categoriaId?: IntFilter<"Produto"> | number
+  }
+
   export type PedidoCreateWithoutMesaInput = {
     comandaId?: number | null
     quantidade: number
@@ -6527,6 +9192,27 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ValorParcialCreateWithoutMesaInput = {
+    valor: number
+    updatedAt: Date | string
+  }
+
+  export type ValorParcialUncheckedCreateWithoutMesaInput = {
+    id?: number
+    valor: number
+    updatedAt: Date | string
+  }
+
+  export type ValorParcialCreateOrConnectWithoutMesaInput = {
+    where: ValorParcialWhereUniqueInput
+    create: XOR<ValorParcialCreateWithoutMesaInput, ValorParcialUncheckedCreateWithoutMesaInput>
+  }
+
+  export type ValorParcialCreateManyMesaInputEnvelope = {
+    data: ValorParcialCreateManyMesaInput | ValorParcialCreateManyMesaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PedidoUpsertWithWhereUniqueWithoutMesaInput = {
     where: PedidoWhereUniqueInput
     update: XOR<PedidoUpdateWithoutMesaInput, PedidoUncheckedUpdateWithoutMesaInput>
@@ -6543,10 +9229,37 @@ export namespace Prisma {
     data: XOR<PedidoUpdateManyMutationInput, PedidoUncheckedUpdateManyWithoutMesaInput>
   }
 
+  export type ValorParcialUpsertWithWhereUniqueWithoutMesaInput = {
+    where: ValorParcialWhereUniqueInput
+    update: XOR<ValorParcialUpdateWithoutMesaInput, ValorParcialUncheckedUpdateWithoutMesaInput>
+    create: XOR<ValorParcialCreateWithoutMesaInput, ValorParcialUncheckedCreateWithoutMesaInput>
+  }
+
+  export type ValorParcialUpdateWithWhereUniqueWithoutMesaInput = {
+    where: ValorParcialWhereUniqueInput
+    data: XOR<ValorParcialUpdateWithoutMesaInput, ValorParcialUncheckedUpdateWithoutMesaInput>
+  }
+
+  export type ValorParcialUpdateManyWithWhereWithoutMesaInput = {
+    where: ValorParcialScalarWhereInput
+    data: XOR<ValorParcialUpdateManyMutationInput, ValorParcialUncheckedUpdateManyWithoutMesaInput>
+  }
+
+  export type ValorParcialScalarWhereInput = {
+    AND?: ValorParcialScalarWhereInput | ValorParcialScalarWhereInput[]
+    OR?: ValorParcialScalarWhereInput[]
+    NOT?: ValorParcialScalarWhereInput | ValorParcialScalarWhereInput[]
+    id?: IntFilter<"ValorParcial"> | number
+    valor?: FloatFilter<"ValorParcial"> | number
+    updatedAt?: DateTimeFilter<"ValorParcial"> | Date | string
+    pedidoId?: IntFilter<"ValorParcial"> | number
+  }
+
   export type MesaCreateWithoutPedidosInput = {
     nome?: string | null
     numero: number
     status: string
+    valorParcial?: ValorParcialCreateNestedManyWithoutMesaInput
   }
 
   export type MesaUncheckedCreateWithoutPedidosInput = {
@@ -6554,6 +9267,7 @@ export namespace Prisma {
     nome?: string | null
     numero: number
     status: string
+    valorParcial?: ValorParcialUncheckedCreateNestedManyWithoutMesaInput
   }
 
   export type MesaCreateOrConnectWithoutPedidosInput = {
@@ -6563,7 +9277,7 @@ export namespace Prisma {
 
   export type PedidoEncerradoCreateWithoutPedidosInput = {
     mesaId: number
-    valor: number
+    valor?: number | null
     formaPagamento: string
     data: Date | string
   }
@@ -6571,7 +9285,7 @@ export namespace Prisma {
   export type PedidoEncerradoUncheckedCreateWithoutPedidosInput = {
     id?: number
     mesaId: number
-    valor: number
+    valor?: number | null
     formaPagamento: string
     data: Date | string
   }
@@ -6584,14 +9298,14 @@ export namespace Prisma {
   export type ProdutoCreateWithoutPedidosInput = {
     nome: string
     preco: number
-    categoria: string
+    categoria: CategoriaCreateNestedOneWithoutProdutosInput
   }
 
   export type ProdutoUncheckedCreateWithoutPedidosInput = {
     id?: number
     nome: string
     preco: number
-    categoria: string
+    categoriaId: number
   }
 
   export type ProdutoCreateOrConnectWithoutPedidosInput = {
@@ -6614,6 +9328,7 @@ export namespace Prisma {
     nome?: NullableStringFieldUpdateOperationsInput | string | null
     numero?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    valorParcial?: ValorParcialUpdateManyWithoutMesaNestedInput
   }
 
   export type MesaUncheckedUpdateWithoutPedidosInput = {
@@ -6621,6 +9336,7 @@ export namespace Prisma {
     nome?: NullableStringFieldUpdateOperationsInput | string | null
     numero?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    valorParcial?: ValorParcialUncheckedUpdateManyWithoutMesaNestedInput
   }
 
   export type PedidoEncerradoUpsertWithoutPedidosInput = {
@@ -6636,7 +9352,7 @@ export namespace Prisma {
 
   export type PedidoEncerradoUpdateWithoutPedidosInput = {
     mesaId?: IntFieldUpdateOperationsInput | number
-    valor?: FloatFieldUpdateOperationsInput | number
+    valor?: NullableFloatFieldUpdateOperationsInput | number | null
     formaPagamento?: StringFieldUpdateOperationsInput | string
     data?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6644,7 +9360,7 @@ export namespace Prisma {
   export type PedidoEncerradoUncheckedUpdateWithoutPedidosInput = {
     id?: IntFieldUpdateOperationsInput | number
     mesaId?: IntFieldUpdateOperationsInput | number
-    valor?: FloatFieldUpdateOperationsInput | number
+    valor?: NullableFloatFieldUpdateOperationsInput | number | null
     formaPagamento?: StringFieldUpdateOperationsInput | string
     data?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6663,14 +9379,60 @@ export namespace Prisma {
   export type ProdutoUpdateWithoutPedidosInput = {
     nome?: StringFieldUpdateOperationsInput | string
     preco?: FloatFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
+    categoria?: CategoriaUpdateOneRequiredWithoutProdutosNestedInput
   }
 
   export type ProdutoUncheckedUpdateWithoutPedidosInput = {
     id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
     preco?: FloatFieldUpdateOperationsInput | number
-    categoria?: StringFieldUpdateOperationsInput | string
+    categoriaId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MesaCreateWithoutValorParcialInput = {
+    nome?: string | null
+    numero: number
+    status: string
+    pedidos?: PedidoCreateNestedManyWithoutMesaInput
+  }
+
+  export type MesaUncheckedCreateWithoutValorParcialInput = {
+    id?: number
+    nome?: string | null
+    numero: number
+    status: string
+    pedidos?: PedidoUncheckedCreateNestedManyWithoutMesaInput
+  }
+
+  export type MesaCreateOrConnectWithoutValorParcialInput = {
+    where: MesaWhereUniqueInput
+    create: XOR<MesaCreateWithoutValorParcialInput, MesaUncheckedCreateWithoutValorParcialInput>
+  }
+
+  export type MesaUpsertWithoutValorParcialInput = {
+    update: XOR<MesaUpdateWithoutValorParcialInput, MesaUncheckedUpdateWithoutValorParcialInput>
+    create: XOR<MesaCreateWithoutValorParcialInput, MesaUncheckedCreateWithoutValorParcialInput>
+    where?: MesaWhereInput
+  }
+
+  export type MesaUpdateToOneWithWhereWithoutValorParcialInput = {
+    where?: MesaWhereInput
+    data: XOR<MesaUpdateWithoutValorParcialInput, MesaUncheckedUpdateWithoutValorParcialInput>
+  }
+
+  export type MesaUpdateWithoutValorParcialInput = {
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    pedidos?: PedidoUpdateManyWithoutMesaNestedInput
+  }
+
+  export type MesaUncheckedUpdateWithoutValorParcialInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: NullableStringFieldUpdateOperationsInput | string | null
+    numero?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    pedidos?: PedidoUncheckedUpdateManyWithoutMesaNestedInput
   }
 
   export type PedidoCreateWithoutPedidoEncerradoInput = {
@@ -6745,12 +9507,43 @@ export namespace Prisma {
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type ProdutoCreateManyCategoriaInput = {
+    id?: number
+    nome: string
+    preco: number
+  }
+
+  export type ProdutoUpdateWithoutCategoriaInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+    preco?: FloatFieldUpdateOperationsInput | number
+    pedidos?: PedidoUpdateManyWithoutProdutoNestedInput
+  }
+
+  export type ProdutoUncheckedUpdateWithoutCategoriaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+    preco?: FloatFieldUpdateOperationsInput | number
+    pedidos?: PedidoUncheckedUpdateManyWithoutProdutoNestedInput
+  }
+
+  export type ProdutoUncheckedUpdateManyWithoutCategoriaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+    preco?: FloatFieldUpdateOperationsInput | number
+  }
+
   export type PedidoCreateManyMesaInput = {
     id?: number
     comandaId?: number | null
     produtoId: number
     quantidade: number
     pedidoEncerradoId?: number | null
+  }
+
+  export type ValorParcialCreateManyMesaInput = {
+    id?: number
+    valor: number
+    updatedAt: Date | string
   }
 
   export type PedidoUpdateWithoutMesaInput = {
@@ -6774,6 +9567,23 @@ export namespace Prisma {
     produtoId?: IntFieldUpdateOperationsInput | number
     quantidade?: IntFieldUpdateOperationsInput | number
     pedidoEncerradoId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ValorParcialUpdateWithoutMesaInput = {
+    valor?: FloatFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ValorParcialUncheckedUpdateWithoutMesaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    valor?: FloatFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ValorParcialUncheckedUpdateManyWithoutMesaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    valor?: FloatFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PedidoCreateManyPedidoEncerradoInput = {
@@ -6817,6 +9627,10 @@ export namespace Prisma {
      */
     export type ProdutoCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProdutoCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use CategoriaCountOutputTypeDefaultArgs instead
+     */
+    export type CategoriaCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CategoriaCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use MesaCountOutputTypeDefaultArgs instead
      */
     export type MesaCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MesaCountOutputTypeDefaultArgs<ExtArgs>
@@ -6829,6 +9643,10 @@ export namespace Prisma {
      */
     export type ProdutoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProdutoDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use CategoriaDefaultArgs instead
+     */
+    export type CategoriaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CategoriaDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use MesaDefaultArgs instead
      */
     export type MesaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MesaDefaultArgs<ExtArgs>
@@ -6836,6 +9654,10 @@ export namespace Prisma {
      * @deprecated Use PedidoDefaultArgs instead
      */
     export type PedidoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PedidoDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ValorParcialDefaultArgs instead
+     */
+    export type ValorParcialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ValorParcialDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PedidoEncerradoDefaultArgs instead
      */

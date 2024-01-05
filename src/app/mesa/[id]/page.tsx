@@ -2,8 +2,23 @@ import PedidoComponent from "@/components/Pedido";
 import prisma from "../../../../lib/prisma";
 
 async function getProdutos() {
-  const produtos = await prisma.produto.findMany();
-  return produtos;
+  const produtos = await prisma.produto.findMany({
+    include: {
+      categoria: true, // Include the related category data
+    },
+  });
+
+  // Transform the result to return the name of the category instead of categoriaId
+  const formattedProdutos = produtos.map((produto) => {
+    return {
+      id: produto.id,
+      nome: produto.nome,
+      preco: produto.preco,
+      categoria: produto.categoria.nome, // Access the name property of the related category
+    };
+  });
+
+  return formattedProdutos;
 }
 
 async function PedidoMesa({ params }: { params: { id: string } }) {

@@ -111,7 +111,12 @@ exports.Prisma.ProdutoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   preco: 'preco',
-  categoria: 'categoria'
+  categoriaId: 'categoriaId'
+};
+
+exports.Prisma.CategoriaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome'
 };
 
 exports.Prisma.MesaScalarFieldEnum = {
@@ -128,6 +133,13 @@ exports.Prisma.PedidoScalarFieldEnum = {
   produtoId: 'produtoId',
   quantidade: 'quantidade',
   pedidoEncerradoId: 'pedidoEncerradoId'
+};
+
+exports.Prisma.ValorParcialScalarFieldEnum = {
+  id: 'id',
+  valor: 'valor',
+  updatedAt: 'updatedAt',
+  pedidoId: 'pedidoId'
 };
 
 exports.Prisma.PedidoEncerradoScalarFieldEnum = {
@@ -156,8 +168,10 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Produto: 'Produto',
+  Categoria: 'Categoria',
   Mesa: 'Mesa',
   Pedido: 'Pedido',
+  ValorParcial: 'ValorParcial',
   PedidoEncerrado: 'PedidoEncerrado'
 };
 

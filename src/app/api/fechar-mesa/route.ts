@@ -19,7 +19,6 @@ export async function POST(request) {
             quantidade: pedido.quantidade,
           })),
         },
-        
       },
 
     });
@@ -28,6 +27,11 @@ export async function POST(request) {
           mesaId: parseInt(mesaId),
       },
   });
+  await prisma.valorParcial.deleteMany({
+    where: {
+      pedidoId: parseInt(mesaId),
+    },
+});
 
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
