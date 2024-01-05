@@ -12,10 +12,10 @@ interface MesaProps {
 
 export const MesasCaixa = ({ data }) => {
     return (
-        <div className="flex flex-col gap-4 bg-slate-100 p-5 rounded-md">
+        <div className="flex flex-col gap-4 bg-slate-100 sm:p-5 p-2 rounded-md">
              {data && (
           <div className="flex flex-col gap-4">
-            <ul className="grid grid-cols-3 gap-4">
+            <ul className="grid grid-cols-3 sm:gap-4 gap-2">
               {data.map((item) => (
                 item.nome ?
                   <Link key={item.id} href={`/caixa/${item.id}`}>

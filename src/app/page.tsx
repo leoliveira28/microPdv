@@ -31,18 +31,17 @@ export default async function Home() {
   const mesas = await getMesa();
   const comanda = await getComanda()
   return (
-    <div className="flex p-5">
+    <div className="flex sm:p-5 p-2">
       <Navbar />
-    <div className="container mx-auto p-5">
-      <div className="flex flex-col gap-4 bg-slate-100 p-5 rounded-md">
+    <div className="container mx-auto sm:p-5 p-2">
+      <div className="flex flex-col gap-4 bg-slate-100 sm:p-5 p-2 rounded-md">
         <h1 className="text-2xl font-bold text-gray-800">Adicionar Pedidos</h1>
         <div className="flex flex-col gap-4">
-          <ul className="grid grid-cols-3 gap-4"></ul>
-          <ul className="grid grid-cols-3 gap-4">
+          <ul className="grid grid-cols-3 sm:gap-4 gap-2">
             {comanda.map((item) => (
               <Link key={item.id} href={`/mesa/${item.id}`}>
                 <li
-                  className={`p-4 rounded-lg text-lg font-medium flex justify-center ${
+                  className={`sm:p-4 p-3 rounded-lg sm:text-lg text-base text-center font-medium flex justify-center ${
                     item.pedidos && item.pedidos.length > 0
                       ? "bg-yellow-200"
                       : "bg-green-200"
@@ -57,7 +56,7 @@ export default async function Home() {
               item.nome ? null :
               <Link key={item.id} href={`/mesa/${item.id}`}>
                 <li
-                  className={`p-4 rounded-lg text-lg font-medium flex justify-center ${
+                  className={`p-4 rounded-lg sm:text-lg text-base text-center font-medium flex justify-center ${
                     item.pedidos && item.pedidos.length > 0
                       ? "bg-yellow-200"
                       : "bg-green-200"

@@ -28,9 +28,9 @@ const Caixa = async () => {
   const mesa = await getData()
   const comanda = await getComanda()
   return (
-    <div className="flex p-5">
+    <div className="flex sm:p-5 p-2">
       <Navbar />
-    <div className="container mx-auto p-5">
+    <div className="container mx-auto sm:p-2">
       <div className="flex flex-col gap-4 bg-slate-100 p-5 rounded-md">
         <h1 className="font-bold text-2xl text-gray-800">Caixa</h1>
         {/* <MesasCaixa data={comanda} /> */}
