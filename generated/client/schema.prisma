@@ -51,7 +51,7 @@ model ValorParcial {
   valor             Float
   updatedAt         DateTime
   pedidoId          Int
-  mesa            Mesa @relation(fields: [pedidoId], references: [id])
+  mesa              Mesa @relation(fields: [pedidoId], references: [id])
 }
 
 model PedidoEncerrado {
