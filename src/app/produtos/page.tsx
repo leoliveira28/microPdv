@@ -29,8 +29,8 @@ const Produtos = async () => {
               <div className="flex flex-col gap-5">
                   <strong>Produtos Cadastrados</strong>
               </div>
-          <TabelaProdutos data={dataProduto} categoria={dataCategoria} />
           <CadastroProduto categoria={dataCategoria} />
+          <TabelaProdutos data={dataProduto} categoria={dataCategoria} />
           </div>
         </div>
       </div>

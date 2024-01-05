@@ -50,6 +50,11 @@ export const TabelaProdutos = ({ data, categoria }) => {
       body: JSON.stringify(id),
     }).then((res) => (res.ok ? window.location.reload() : null));
   };
+  const format = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+  
   return (
     <div>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 shadow-md">
@@ -57,6 +62,9 @@ export const TabelaProdutos = ({ data, categoria }) => {
           <tr>
             <th scope="col" className="px-6 py-3">
               Nome do Produto
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Preço
             </th>
             <th scope="col" className="px-6 py-3">
               Editar
@@ -78,6 +86,9 @@ export const TabelaProdutos = ({ data, categoria }) => {
               >
                 {item.nome}
               </th>
+              <td className="text-gray-800">
+              {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.preco)}
+              </td>
               <td id={item.id} className="px-6 py-4">
                 <PencilSimple
                   onClick={() => openModal(item.id)}
