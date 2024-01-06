@@ -32,7 +32,9 @@ export default async function Home() {
   const comanda = await getComanda()
   return (
     <div className="flex sm:p-5 p-2">
+      <div className="hidden sm:block">
       <Navbar />
+      </div>
     <div className="container mx-auto sm:p-5 p-2">
       <div className="flex flex-col gap-4 bg-slate-100 sm:p-5 p-2 rounded-md">
         <h1 className="text-2xl font-bold text-gray-800">Adicionar Pedidos</h1>

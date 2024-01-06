@@ -33,7 +33,6 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [valorParcial, setValorParcial] = useState("");
   const [valorPago, setValorPago] = useState<ValorPago[]>();
-  const [valorRecebido, setValorRecebido] = useState();
   const openModal = () => {
     setIsModalOpen(true);
   };
