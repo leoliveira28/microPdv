@@ -138,6 +138,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
     });
     window.location.replace("/caixa");
   };
+
   return (
     <div className="flex p-5">
       <Navbar />
