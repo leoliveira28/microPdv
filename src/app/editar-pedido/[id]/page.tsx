@@ -35,7 +35,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
           <div>
             <div className="flex flex-col gap-4 sm:w-1/2 p-5">
               {pedido.pedidos.map((item, i) => (
-                <div className="flex gap-4 justify-between border-b-2">
+                <div key={i} className="flex gap-4 justify-between border-b-2">
                   <p key={i}>
                     ID pedido {item.id} {item.produto.nome}
                   </p>
