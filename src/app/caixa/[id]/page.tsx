@@ -1,7 +1,8 @@
 "use client";
 import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
-import { use, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useReactToPrint } from "react-to-print";
 
 interface Produto {
   id: number;
@@ -26,6 +27,13 @@ interface ValorParcial {
   updatedAt: string;
   pedidoId: number;
 }
+
+interface Comanda {
+  id: number;
+  nome: string;
+  numero: number;
+  status: string;
+}
 const ConsumoMesa = ({ params }: { params: { id: string } }) => {
   const [totalConta, setTotalConta] = useState(0.0);
   const [pedido, setPedido] = useState<Pedido[]>();
@@ -33,6 +41,7 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [valorParcial, setValorParcial] = useState("");
   const [valorPago, setValorPago] = useState<ValorPago[]>();
+  const [nomeComanda, setNomeComanda] = useState<Comanda>();
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -74,8 +83,22 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
       console.log();
       // console.log(valorPago)
     };
+    const getComanda = async () => {
+      const mesaId = params.id;
+      const response = await fetch("/api/nome-comanda", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(mesaId),
+      });
+      const data = await response.json();
+      setNomeComanda(data.data);
+      // console.log(nomeComanda)
+    };
     getParcial();
     getPedido();
+    getComanda();
     if (pedido && pedido.length > 0) {
       const newTotalConta = pedido.reduce((total, item) => {
         return total + item.produto.preco * item.quantidade;
@@ -138,26 +161,33 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
     });
     window.location.replace("/caixa");
   };
+  const componenteRef = useRef();
 
+  const handlePrint = useReactToPrint({
+    content: () => componenteRef.current,
+  });
+  const comanda =  nomeComanda?.nome
   return (
     <div className="flex p-5">
       <Navbar />
       <div className="container mx-auto p-5">
         <div className="flex flex-col gap-4 bg-slate-200 p-5 rounded-md shadow-md">
-          <h1 className="text-xl font-bold text-gray-800">
-            Consumo Mesa / Comanda: {params.id}
-          </h1>
-          <ul className="list-disc list-inside">
-            {pedido &&
-              pedido.map((item) => (
-                <li key={item.id}>
-                  {item.produto.nome} - PREÇO {item.produto.preco} - QTDE:{" "}
-                  {item.quantidade}
-                </li>
-              ))}
-          </ul>
-          <strong>Total da mesa: R$ {totalConta}</strong>
+          <div ref={componenteRef}  className="flex p-2 flex-col gap-4">
+            <h1 className="text-xl font-bold text-gray-800"> <br />
+              Consumo {`${comanda ? 'Comanda ' + comanda : 'Mesa ' + params.id}`}
+            </h1>
+            <ul className="list-disc flex flex-col gap-4 list-inside">
+              {pedido &&
+                pedido.map((item) => (
+                  <li key={item.id}>
+                    {item.produto.nome} R$ {item.produto.preco} - QTDE:{" "}
+                    {item.quantidade}
+                  </li>
+                ))}
+            </ul>
+            <strong>Total da mesa: R$ {totalConta}</strong>
           {valorPago && <strong>Valor Pago: R$ {soma}</strong>}
+          </div>
           <div className="flex gap-4">
             <button
               onClick={openModal}
@@ -168,6 +198,8 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
             <button className="bg-green-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all">
               <Link href={"/caixa"}>Voltar</Link>
             </button>
+            <button className="bg-emerald-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all" onClick={handlePrint}>Imprimir</button>
+
             <button
               onClick={handleEexcluirComanda}
               className="bg-red-500 font-medium text-md p-2 rounded-md text-gray-900 hover:brightness-90 transition-all"
@@ -251,3 +283,4 @@ const ConsumoMesa = ({ params }: { params: { id: string } }) => {
 };
 
 export default ConsumoMesa;
+
