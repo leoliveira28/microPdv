@@ -165,7 +165,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\leand\\OneDrive\\Área de Trabalho\\Dev\\microPdv\\generated\\client",
+      "value": "C:\\Users\\leand\\Desktop\\Dev\\fullstack-app\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
